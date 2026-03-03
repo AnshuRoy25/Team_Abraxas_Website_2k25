@@ -1,7 +1,5 @@
-# National Physics Conference 2024
+This is the official website of Team ABRAXAS for NIMBUS 2K25.
 
-## Date: Releasing Soon
+The website is live at https://abraxas-2025.vercel.app/
 
-## Venue: National Institute of Technology, Hamirpur
-
-
+Made with ❤️ by the Web Team — Shabd Patel, Aditya Verma, Shivangi Beniwal of Team Abraxas.
