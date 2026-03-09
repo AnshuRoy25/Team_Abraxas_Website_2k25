@@ -1,5 +1,42 @@
 {
-    "Volunteers": [
+    "Volunteers":[
+             {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961753/IMG-20251122-WA0090_-_Mr._MAGIZHAN_yczhva.jpg",
+                "name": "Magizhan",
+                "social": {
+                    "github": "https://github.com/Magizhan2107",
+                    "linkedin": "https://www.linkedin.com/in/magizhan-gunalan-3a4455386?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+                    "instagram": "https://www.instagram.com/magizhan2107?igsh=MWl1c3B6bmI1cTFteg=="
+                }
+            },
+             {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961753/20250902_183122_-_Anirudh_Thakur_frfk74.jpg",
+                "name": "Anirudh",
+                "social": {
+                    "github": "",
+                    "linkedin": "https://www.linkedin.com/in/mr-anirudh-864988389?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    "instagram": "https://www.instagram.com/_anirudh_thakur_26?igsh=MWo2c2puNm9pOWt2OA=="
+                }
+            }, {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961753/Passport-style_portrait_of_a_young_man_-_Deepak_Negi_fyq8y8.png",
+                "name": "Deepak Negi",
+                "social": {
+                    "github": "",
+                    "linkedin": "http://linkedin.com/in/deepak-negi-6871743a2",
+                    "instagram": "https://www.instagram.com/deepak717778?igsh=d3N5NW1jY2Y5NXJu"
+                }
+            }
+    ],
+    "Executives": [
+         {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772962350/WhatsApp_Image_2026-02-02_at_9.54.17_PM_cweal1.jpg",
+                "name": "Lakshya",
+                "social": {
+                    "github": "https://github.com/wraithxlaksh",
+                    "linkedin": "https://www.linkedin.com/in/lakshya-sharma-a84748326/",
+                    "instagram": "https://www.instagram.com/wraith_laksh/"
+                }
+            },
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800315/IMG_20250125_132328_-_Ajandeep_Singh_i8dpn1.jpg",
             "name": "Ajandeep Singh",
@@ -18,24 +55,9 @@
                 "instagram": "https://www.instagram.com/akhil_verma093"
             }
         },
-        {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800310/24BPH005_-_Aman_Verma_ozgagv.png",
-            "name": "Aman",
-            "social": {
-                "github": "",
-                "linkedin": "",
-                "instagram": ""
-            }
-        },
-        {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800308/24BPH006_-_Aman_wfab9w.jpg",
-            "name": "Amandeep",
-            "social": {
-                "github": "",
-                "linkedin": "",
-                "instagram": "https://www.instagram.com/senor_aman"
-            }
-        },
+        
+        
+    
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800306/24BPHO48.._-_Ankit_Kumar_vigpk0.jpg",
             "name": "Ankit Kumar",
@@ -63,15 +85,7 @@
                 "instagram": "https://www.instagram.com/arun.thqr"
             }
         },
-        {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800309/24bph010_-_ARYAN_KUMAR_ezxrkt.jpg",
-            "name": "Aryan Kumar",
-            "social": {
-                "github": "",
-                "linkedin": "",
-                "instagram": "https://www.instagram.com/__a_ryan_"
-            }
-        },
+        
         {
             "photo": "",
             "name": "Ashish Rawal",
@@ -108,24 +122,8 @@
                 "instagram": ""
             }
         },
-        {
-            "photo": "",
-            "name": "Kashish Kapoor",
-            "social": {
-                "github": "",
-                "linkedin": "",
-                "instagram": ""
-            }
-        },
-        {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800309/Neha_._-_NEHA_DEVI_rc9l6c.jpg",
-            "name": "Neha",
-            "social": {
-                "github": "",
-                "linkedin": "https://www.linkedin.com/in/neha-215746321",
-                "instagram": "https://www.instagram.com/secret_wisher8"
-            }
-        },
+        
+        
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800309/24BPH049_-_Om_Parmar_gkvln9.jpg",
             "name": "Om Parmar",
@@ -135,15 +133,7 @@
                 "instagram": "https://www.instagram.com/parmarom32145"
             }
         },
-        {
-            "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743084092/WhatsApp_Image_2025-03-27_at_19.29.17_coiacr.jpg",
-            "name": "Pragati Verma",
-            "social": {
-                "github": "",
-                "linkedin": "https://www.linkedin.com/in/pragati-verma-772427334",
-                "instagram": "https://www.instagram.com/pr.agati1166"
-            }
-        },
+       
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800320/IMG_0207_-_Prasmeta_Behera_zxku4l.jpg",
             "name": "Prashmeta Prasaeta Behera",
@@ -190,7 +180,7 @@
                 }
             },
             {
-                "photo": "",
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961753/file_00000000a9fc71fab768dd6d4a7593b3_-_Saurav_Sharma_b5d01w.png",
                 "name": "Saurav Sharma",
                 "social": {
                     "github": "",
@@ -207,15 +197,7 @@
                     "instagram": "https://www.instagram.com/snowflalez045"
                 }
             },
-            {
-                "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800319/photo_0_-_TEJAS_LALIT_SHARDUL_zp3ql1.jpg",
-                "name": "Tejas Lalit Shardul",
-                "social": {
-                    "github": "",
-                    "linkedin": "https://www.linkedin.com/in/tejas-shardul-163bb7343",
-                    "instagram": "https://www.instagram.com/@astrophile_7791"
-                }
-            },
+            
             {
                 "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800321/IMG-20241110-WA0021_-_VIKENDRA_KASHYAP_kuldch.jpg",
                 "name": "Vikendra Kashyap",
@@ -226,7 +208,7 @@
                 }
             }
     ],
-    "Executives": [
+    "Coordinators": [
         {
             "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1720016995/aarushi_udpsbe.jpg",
             "name": "Aarushi Saini",
@@ -310,7 +292,7 @@
                 }
             }
         ],
-    "Coordinators": [
+    "Final-Year": [
         {
             "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712824994/Batch2024/jt7glbap61cd1hzhbvy5.jpg",
             "name": "Akanksha Verma",
@@ -427,9 +409,7 @@
                 "linkedin": "https://www.linkedin.com/in/tanashvi-joshi-528412255/",
                 "instagram": "https://instagram.com/tanashvi_joshi19?igshid=ZDdkNTZiNTM="
             }
-        }
-    ],
-    "Club-Coordinators":[
+        },
         {
             "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712825006/Batch2024/i9lapz5m631riuu1wscf.jpg",
             "name": "Sudharson",
@@ -449,7 +429,18 @@
             }
         }
     ],
-    "Final-Year":[
+    "Club-Coordinators":[
+        {
+            "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961754/DSC03682_-_VIKAS_K_bs16of.jpg",
+            "name": "Vikas",
+            "social": {
+                "github": "",
+                "linkedin": "https://www.linkedin.com/in/vikas-mahala-2318302b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                "instagram": "https://www.instagram.com/_vikasmahala?igsh=eWcycGpkNTFqbjNx"
+            }
+        }
+    ],
+    "Our Alumni":[
             {
                 "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712825010/Batch2024/vn395socsftd8bl7npiv.jpg",
                 "name": "Ankush",
@@ -557,9 +548,8 @@
                     "linkedin": "https://www.linkedin.com/in/shanu-kumari-1831a1230",
                     "instagram": "https://www.instagram.com/shanu_pandel554?igsh=MTg4OXI0MDB0dW53Zw=="
                 }
-            }
-    ],
-    "Our Alumni":[
+            },
+    
             {
                 "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712825722/Batch2024/dtpfoxkhsjjatq2qxphv.jpg",
                 "name": "Anirudh Thakur",

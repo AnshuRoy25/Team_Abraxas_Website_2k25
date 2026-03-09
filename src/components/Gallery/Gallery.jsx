@@ -44,7 +44,7 @@ const Gallery = () => {
       "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786260/ABRAXAS-Gallery/ziuw6xbziugszlap3dvf.jpg",
       "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786178/ABRAXAS-Gallery/a7txsa3jgy3ibf0hq6gh.jpg"
     ],
-    "2025":[
+    "2025": [
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1738269372/Screenshot_20250131-015950_Photos_uhykne.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1738269371/Screenshot_20250131-015927_Photos_l0uv7j.png",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1738269372/Screenshot_20250131-020027_Photos_zxmpqf.png",
@@ -62,13 +62,14 @@ const Gallery = () => {
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082716/WhatsApp_Image_2025-03-27_at_19.04.34_1_xdtmbb.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082717/WhatsApp_Image_2025-03-27_at_19.04.34_z8lk1v.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082718/WhatsApp_Image_2025-03-27_at_19.04.33_2_okvkys.jpg",
-    
+
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082718/WhatsApp_Image_2025-03-27_at_19.04.33_3_md4hsf.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082719/WhatsApp_Image_2025-03-27_at_19.04.33_1_py7ikr.jpg"
     ],
+    "2026": []
   };
 
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedYear, setSelectedYear] = useState("2026");
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -127,7 +128,7 @@ const Gallery = () => {
 
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 perspective-1000" 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 perspective-1000"
         >
           <AnimatePresence>
             {galleryData[selectedYear].map((image, index) => (
@@ -135,7 +136,7 @@ const Gallery = () => {
                 key={image}
                 layout
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ 
+                animate={{
                   opacity: 1,
                   y: 0,
                   rotateX: 2,
@@ -143,19 +144,19 @@ const Gallery = () => {
                   transition: { duration: 0.4, ease: "easeOut" }
                 }}
                 exit={{ opacity: 0, y: 20 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   rotateX: 5,
                   rotateY: 5,
                   z: 50,
-                  transition: { 
+                  transition: {
                     duration: 0.3,
                     ease: "easeOut"
                   }
                 }}
                 className="group relative preserve-3d"
                 onClick={() => handleImageClick(image, index)}
-                style={{ 
+                style={{
                   transformStyle: "preserve-3d",
                   perspective: "1000px"
                 }}
@@ -199,7 +200,7 @@ const Gallery = () => {
                   alt="Selected"
                   className="w-full h-[85vh] object-contain rounded-2xl"
                 />
-                
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();

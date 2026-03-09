@@ -58,7 +58,7 @@ const Projects = () => {
         if (!acc[project.year]) {
             acc[project.year] = [];
         }
-        const maxCards = project.year === '2025' ? 5 : 7;
+        const maxCards = (project.year === '2026' || project.year === '2025') ? 5 : 7;
         if (acc[project.year].length < maxCards) {
             acc[project.year].push(project);
         }
@@ -66,11 +66,11 @@ const Projects = () => {
     }, {});
 
     // Ensure each year has the correct number of projects
-    ['2025', '2024', '2023'].forEach(year => {
+    ['2026', '2025', '2024', '2023'].forEach(year => {
         if (!groupedData[year]) {
             groupedData[year] = [];
         }
-        const maxCards = year === '2025' ? 5 : 7;
+        const maxCards = (year === '2026' || year === '2025') ? 5 : 7;
         while (groupedData[year].length < maxCards) {
             groupedData[year].push({
                 name: `Project ${groupedData[year].length + 1}`,
@@ -140,7 +140,7 @@ const Projects = () => {
                 >
                     All Years
                 </motion.button>
-                {['2025', '2024', '2023'].map((year) => (
+                {['2026', '2025', '2024', '2023'].map((year) => (
                     <motion.button
                         key={year}
                         onClick={() => setSelectedYear(year)}
