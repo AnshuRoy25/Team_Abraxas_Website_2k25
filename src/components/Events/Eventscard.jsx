@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Events.css';
-import Escape_room from '../../assets/events/Escape_room.png';
-import Abraxas_day from '../../assets/events/Abraxas_day.jpg';
-import guest_lecture from '../../assets/events/guest_lecture.jpg';
-import AI_workshop from '../../assets/events/AI_workshop.png';
 import { ArrowLeft } from 'lucide-react';
 
 const EventsCard = () => {
