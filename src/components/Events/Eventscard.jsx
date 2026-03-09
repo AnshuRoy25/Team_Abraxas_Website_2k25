@@ -6,21 +6,6 @@ import { ArrowLeft } from 'lucide-react';
 const EventsCard = () => {
   const [activeTab, setActiveTab] = useState('events');
 
-  const workshopCards = [
-    {
-      id: 'workshop1',
-      title: "Physics Carnival",
-      image: Abraxas_day,
-      description: "Remember, physics isn't just about memorizing formulas. It's about understanding how the world works. It's about asking 'what if?' and then finding the answer.✨ Two years of 'What if?' answered! ✨ Team Abraxas celebrates its anniversary with a Physics Carnival explosion! 🎉⚡ Join us at the Students' Park for an anniversary bash full of physics fun, games, and demos! 🧪🔬🎯Come celebrate our journey—it's gonna be a blast! 🚀 See you there! 😃"
-    },
-    {
-      id: 'workshop2',
-      title: "Physics Escape Room",
-      image: Escape_room,
-      description: "🔬✨Surrounded by puzzles and wicked clues.The silence hums with questions of a mystery.This isn’t just a game — it’s a Scientific Showdown! ⚡Team Abraxas brings you the 🧩 Escape Room Extravaganza!🧠 A physics-fueled adventure at Nimbus 2025📍 On Ground | 🗓 11th April (Day 1)💰 Price Pool - ₹5000 cash!Get ready to decode riddles and crack a cryptic case, and escape the room in a race againsttime⏳!Science buffs to thrill-seekers, the lab awaits your next move💥Are you fast enough? Smart enough? Brave enough?Let’s find out. 🔍"
-    }
-  ];
-
   const eventCards = [
     {
       id: 'event1',
