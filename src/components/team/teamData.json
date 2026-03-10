@@ -25,6 +25,24 @@
                     "linkedin": "http://linkedin.com/in/deepak-negi-6871743a2",
                     "instagram": "https://www.instagram.com/deepak717778?igsh=d3N5NW1jY2Y5NXJu"
                 }
+            },
+             {
+                "photo": "https://drive.google.com/open?id=1V27R0vXF-MTGOJH25l8BEjNdRN_FOKDH",
+                "name": "Kapil",
+                "social": {
+                    "github": "https://github.com/Kapil-cpp",
+                    "linkedin": "https://www.instagram.com/kapil_hr10_?igsh=b3FtbG4xbXBqamxh",
+                    "instagram": "https://www.linkedin.com/in/kapil-b27017383"
+                }
+            },
+             {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1773144370/25BPH012_-_Bijin_Grover_rx6qoy.jpg",
+                "name": "Bijin Grover",
+                "social": {
+                    "github": "https://github.com/superstar-14",
+                    "linkedin": "https://www.linkedin.com/in/superstar14?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    "instagram": "https://www.instagram.com/___superstar___14"
+                }
             }
     ],
     "Executives": [
