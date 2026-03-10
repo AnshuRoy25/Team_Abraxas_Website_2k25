@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import projectsData from './Projectslist';
 
 const Projects = () => {
-    const [selectedYear, setSelectedYear] = useState('all');
+    const [selectedYear, setSelectedYear] = useState('2025');
     const { ref, inView } = useInView({ triggerOnce: true });
 
     const containerVariants = {
@@ -59,7 +59,7 @@ const Projects = () => {
     return (
         <motion.div
             ref={ref}
-            className="min-h-screen bg-black flex flex-col items-center md:items-center justify-start md:justify-center px-4 md:px-8 w-full max-w-screen-xl mx-auto py-8 md:py-16"
+            className="bg-black flex flex-col items-center justify-start px-4 md:px-8 w-full max-w-screen-xl mx-auto py-8 md:py-16 overflow-x-hidden"
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={containerVariants}
@@ -105,32 +105,26 @@ const Projects = () => {
                 ))}
             </motion.div>
 
-            <div className="w-full">
-                <div className="relative">
-                    <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-white/5">
-                        <div className="flex gap-4 md:gap-6 pb-4">
-                            <div className="flex gap-4 md:gap-6 snap-x snap-mandatory">
-                                {filteredData.map((project, index) => (
-                                    <motion.div
-                                        key={`${selectedYear}-${index}`}
-                                        variants={cardVariants}
-                                        className="snap-start flex-shrink-0 first:pl-0 last:pr-4
-                                            w-[calc(100vw-32px)]
-                                            md:w-[calc(50vw-48px)]
-                                            lg:w-80"
-                                    >
-                                        <ProjectCard
-                                            photo={project.photo}
-                                            name={project.name}
-                                            position={project.position}
-                                            description={project.description}
-                                            year={project.year}
-                                        />
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+            <div className="w-full overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className="flex gap-4 md:gap-6 pb-6 snap-x snap-mandatory">
+                    {filteredData.map((project, index) => (
+                        <motion.div
+                            key={`${selectedYear}-${index}`}
+                            variants={cardVariants}
+                            className="snap-start flex-shrink-0
+                                w-[85vw]
+                                md:w-[calc(50vw-48px)]
+                                lg:w-80"
+                        >
+                            <ProjectCard
+                                photo={project.photo}
+                                name={project.name}
+                                position={project.position}
+                                description={project.description}
+                                year={project.year}
+                            />
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </motion.div>

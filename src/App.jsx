@@ -16,20 +16,16 @@ import IntroAnimation from './components/intro/IntroAnimation';
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
-
   useEffect(() => {
     if (pathname === '/') {
       if (hash) {
         const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   }, [pathname, hash]);
-
   return null;
 };
 
@@ -41,12 +37,12 @@ function App() {
       {showIntro ? (
         <IntroAnimation onComplete={() => setShowIntro(false)} />
       ) : (
-        <div className="w-screen">
+        <div className="w-screen overflow-x-hidden">
           <Router>
             <ScrollToTop />
-            <div id="Navbar">
+            <section id="Navbar">
               <Navbar />
-            </div>
+            </section>
             <Routes>
               <Route path="/" element={
                 <>
@@ -56,10 +52,10 @@ function App() {
                     speedFactor={0.15}
                     backgroundColor="black"
                   />
-                  <section id="Home">
-                    <Hero />
-                  </section>
-                  <section id="About">
+                  {/* Hero contains the 100vh section + 300vh scroll text */}
+                  <Hero />
+                  {/* About must be z-10 bg-black to sit on top of scroll section cleanly */}
+                  <section id="About" className="relative z-10 bg-black">
                     <About />
                   </section>
                   <section id="Projects">

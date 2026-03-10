@@ -32,7 +32,7 @@ const EventsCard = () => {
         >
           {/* Front */}
           <div
-            className="absolute w-full h-full backface-hidden rounded-2xl overflow-hidden border border-white/10"
+            className="absolute w-full h-full opacity-70 backface-hidden rounded-2xl overflow-hidden border border-white/10 hover:opacity-100 transition-all duration-300 cursor-pointer"
             style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85))' }}
           >
             <img src={card.image} alt={card.title} className="absolute w-full h-full object-contain" />
@@ -68,7 +68,7 @@ const EventsCard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0B1A] relative py-12 px-6 overflow-hidden">
+    <div className="bg-black relative py-12 px-6 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="flex justify-center gap-4 mb-10">
           <button

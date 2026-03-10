@@ -24,7 +24,7 @@ const ProjectCard = ({ photo, name, position, description }) => {
     };
 
     return (
-        <div className="relative w-2/3 md:w-80" style={{ perspective: '1000px', height: '400px' }}>
+        <div className="relative w-full md:w-80" style={{ perspective: '1000px', height: '420px' }}>
             <motion.div
                 ref={cardRef}
                 className="w-full h-full cursor-pointer"
@@ -39,7 +39,7 @@ const ProjectCard = ({ photo, name, position, description }) => {
                     className={`absolute w-full h-full border border-white/10 rounded-xl bg-black p-3 flex flex-col items-center backface-hidden ${isFlipped ? 'pointer-events-none' : ''}`}
                     style={{ rotateX, rotateY, backfaceVisibility: 'hidden', transition: 'transform 0.3s ease' }}
                 >
-                    <div className="w-38 h-38 md:w-48 md:h-48 rounded overflow-hidden mb-3 mt-2 flex items-center justify-center">
+                    <div className="w-full h-48 rounded overflow-hidden mb-3 mt-2 flex items-center justify-center">
                         {typeof photo === 'string' ? (
                             <img
                                 src={photo}
@@ -78,7 +78,7 @@ const ProjectCard = ({ photo, name, position, description }) => {
                     <div className="flex flex-col h-full">
                         <h2 style={{ fontFamily: "'Syne', sans-serif" }} className="text-lg font-semibold text-white mb-3 tracking-tight">{name}</h2>
                         <div className="w-8 h-px bg-white/20 mb-4"></div>
-                        <div className="flex-grow overflow-y-auto">
+                        <div className="flex-grow overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-white/50 text-sm leading-relaxed">
                                 {description}
                             </p>

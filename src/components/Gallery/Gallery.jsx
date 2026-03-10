@@ -62,14 +62,13 @@ const Gallery = () => {
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082716/WhatsApp_Image_2025-03-27_at_19.04.34_1_xdtmbb.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082717/WhatsApp_Image_2025-03-27_at_19.04.34_z8lk1v.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082718/WhatsApp_Image_2025-03-27_at_19.04.33_2_okvkys.jpg",
-
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082718/WhatsApp_Image_2025-03-27_at_19.04.33_3_md4hsf.jpg",
       "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082719/WhatsApp_Image_2025-03-27_at_19.04.33_1_py7ikr.jpg"
     ],
     "2026": []
   };
 
-  const [selectedYear, setSelectedYear] = useState("2026");
+  const [selectedYear, setSelectedYear] = useState("2025");
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -100,94 +99,117 @@ const Gallery = () => {
         if (e.key === "Escape") setSelectedImage(null);
       }
     };
-
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [selectedImage, currentImageIndex, selectedYear]);
 
   return (
-    <div className="h-screen overflow-y-auto">
+    <div className="h-screen overflow-y-auto overflow-x-hidden bg-black" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-center mb-8">
-          <div className="flex space-x-6">
-            {Object.keys(galleryData).map((year) => (
-              <button
-                key={year}
-                onClick={() => setSelectedYear(year)}
-                className={`px-8 py-3 rounded-xl text-lg font-medium transition-all duration-500 
-                  ${selectedYear === year
-                    ? "bg-gradient-to-r from-purple-900 to-blue-700 shadow-lg shadow-purple-500/25 scale-105 transform"
-                    : "bg-gray-800/50 hover:bg-gray-700/50 hover:scale-105 transform"
-                  }`}
-              >
-                {year}
-              </button>
-            ))}
-          </div>
+
+        {/* Header */}
+        <h1
+          style={{ fontFamily: "'Syne', sans-serif" }}
+          className="text-3xl md:text-4xl font-bold text-white mb-3 text-center tracking-widest"
+        >
+          GALLERY
+        </h1>
+        <div className="w-12 h-px bg-white/20 mx-auto mb-8"></div>
+
+        {/* Year Tabs */}
+        <div className="flex justify-center gap-3 mb-8">
+          {Object.keys(galleryData).map((year) => (
+            <button
+              key={year}
+              onClick={() => setSelectedYear(year)}
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+              className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 border
+                ${selectedYear === year
+                  ? "bg-white/10 text-white border-white/30 scale-105"
+                  : "bg-transparent text-white/40 border-white/10 hover:bg-white/5 hover:text-white/70"
+                }`}
+            >
+              {year}
+            </button>
+          ))}
         </div>
 
+        {/* Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 perspective-1000"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4"
         >
           <AnimatePresence>
-            {galleryData[selectedYear].map((image, index) => (
+            {galleryData[selectedYear].length === 0 ? (
               <motion.div
-                key={image}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  rotateX: 2,
-                  rotateY: 2,
-                  transition: { duration: 0.4, ease: "easeOut" }
-                }}
-                exit={{ opacity: 0, y: 20 }}
-                whileHover={{
-                  scale: 1.05,
-                  rotateX: 5,
-                  rotateY: 5,
-                  z: 50,
-                  transition: {
-                    duration: 0.3,
-                    ease: "easeOut"
-                  }
-                }}
-                className="group relative preserve-3d"
-                onClick={() => handleImageClick(image, index)}
-                style={{
-                  transformStyle: "preserve-3d",
-                  perspective: "1000px"
-                }}
+                className="col-span-3 text-center py-24"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
               >
-                <div className="aspect-square rounded-2xl overflow-hidden bg-transparent backdrop-blur-sm p-2">
-                  <div className="w-full h-full rounded-xl overflow-hidden">
+                <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-white/30 text-lg">
+                  No photos yet for {selectedYear}. Check back soon.
+                </p>
+              </motion.div>
+            ) : (
+              galleryData[selectedYear].map((image, index) => (
+                <motion.div
+                  key={image}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  whileHover={{ scale: 1.03, transition: { duration: 0.3, ease: "easeOut" } }}
+                  className="group relative cursor-pointer"
+                  onClick={() => handleImageClick(image, index)}
+                >
+                  <div className="aspect-square rounded-2xl overflow-hidden border border-white/5 relative shadow-lg group-hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] group-hover:border-white/20 transition-all duration-500">
+
+                    {/* Image — zoom + dim on hover */}
                     <img
                       src={image}
                       alt={`Gallery ${index + 1}`}
-                      className="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transform transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-60"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      <div className="absolute bottom-4 left-4 flex items-center space-x-2 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <Camera className="w-5 h-5" />
-                        <span className="text-sm font-medium">View Image</span>
+
+                    {/* Gradient overlay slides up from bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out rounded-2xl" />
+
+                    {/* Top-right counter badge fades in */}
+                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
+                      <span style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-xs text-white/70 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
+                        {index + 1} / {galleryData[selectedYear].length}
+                      </span>
+                    </div>
+
+                    {/* Bottom label slides up */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <Camera className="w-4 h-4 text-white/80" />
+                          <span style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-sm text-white font-medium tracking-wide">
+                            View Photo
+                          </span>
+                        </div>
+                        <div className="w-7 h-7 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm bg-white/5">
+                          <span className="text-white text-xs">↗</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))
+            )}
           </AnimatePresence>
         </motion.div>
 
+        {/* Lightbox */}
         <AnimatePresence>
           {selectedImage && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-transparent backdrop-blur-md z-50 flex items-center justify-center"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center"
               onClick={() => setSelectedImage(null)}
             >
               <div className="relative w-full max-w-7xl px-4">
@@ -200,34 +222,29 @@ const Gallery = () => {
                   alt="Selected"
                   className="w-full h-[85vh] object-contain rounded-2xl"
                 />
-
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage(null);
-                  }}
-                  className="absolute top-4 right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 transform hover:scale-110"
+                  onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+                  className="absolute top-4 right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm transition-all duration-300"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5 text-white" />
                 </button>
-
                 <button
                   onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 transform hover:scale-110"
+                  className="absolute left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm transition-all duration-300"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5 text-white" />
                 </button>
-
                 <button
                   onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 transform hover:scale-110"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm transition-all duration-300"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 h-5 text-white" />
                 </button>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
+
       </div>
     </div>
   );

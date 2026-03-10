@@ -82,6 +82,38 @@
                     "instagram": "https://www.instagram.com/wraith_laksh/"
                 }
             },
+
+        {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961753/file_00000000a9fc71fab768dd6d4a7593b3_-_Saurav_Sharma_b5d01w.png",
+                "name": "Saurav Sharma",
+                "social": {
+                    "github": "",
+                    "linkedin": "https://www.linkedin.com/in/saurav-sharma-b55870325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    "instagram": "https://www.instagram.com/aaryavartian"
+                }
+            },   
+            
+        {
+            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800320/IMG_0207_-_Prasmeta_Behera_zxku4l.jpg",
+            "name": "Prashmeta Prasaeta Behera",
+            "social": {
+                "github": "",
+                "linkedin": "https://www.linkedin.com/in/prasmeta-behera-11582b2a7",
+                "instagram": "https://www.instagram.com/medu_vada_69"
+            }
+        },    
+
+        {
+            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800320/anshu_-_ANSHU_ASIT_ROY_gyngjv.jpg",
+            "name": "Anshu Asit Roy",
+            "social": {
+                "github": "https://github.com/AnshuRoy25",
+                "linkedin": "http://www.linkedin.com/in/anshuroy2006",
+                "instagram": "https://www.instagram.com/anshuroy2006/"
+            }
+        },
+            
+
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800315/IMG_20250125_132328_-_Ajandeep_Singh_i8dpn1.jpg",
             "name": "Ajandeep Singh",
@@ -112,15 +144,7 @@
                 "instagram": "https://www.instagram.com/_ankit_9.4"
             }
         },
-        {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800320/anshu_-_ANSHU_ASIT_ROY_gyngjv.jpg",
-            "name": "Anshu Asit Roy",
-            "social": {
-                "github": "https://github.com/AnshuRoy25",
-                "linkedin": "http://www.linkedin.com/in/anshuroy2006",
-                "instagram": "https://www.instagram.com/anshuroy2006/"
-            }
-        },
+        
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800317/IMG20250124114225_-_Arun_Thakur_hi2bga.jpg",
             "name": "Arun Thakur",
@@ -178,16 +202,7 @@
                 "instagram": "https://www.instagram.com/parmarom32145"
             }
         },
-       
-        {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800320/IMG_0207_-_Prasmeta_Behera_zxku4l.jpg",
-            "name": "Prashmeta Prasaeta Behera",
-            "social": {
-                "github": "",
-                "linkedin": "https://www.linkedin.com/in/prasmeta-behera-11582b2a7",
-                "instagram": "https://www.instagram.com/medu_vada_69"
-            }
-        },
+    
         {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800318/IMG-20241111-WA0025_-_Prieyal_Rathour_pekbkn.jpg",
             "name": "Prieyal Rathour",

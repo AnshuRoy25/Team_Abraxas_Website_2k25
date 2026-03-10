@@ -13,6 +13,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 * {
@@ -25,6 +26,7 @@ body {
   background-color: #000000;
   color: #e8e8e8;
   font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {

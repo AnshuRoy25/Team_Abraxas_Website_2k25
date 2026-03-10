@@ -6,4 +6,7 @@ export default defineConfig({
   resolve: {
     dedupe: ['react', 'lucide-react']
   },
+  server: {
+    allowedHosts: ['9fe4-2401-4900-5d36-fe23-44af-dfe1-d198-ab49.ngrok-free.app']
+  }
 })
