@@ -1,62 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollTop, setLastScrollTop] = useState(0);
+    const [shouldShow, setShouldShow] = useState(false);
     const [activeSection, setActiveSection] = useState('Home');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [shouldShow, setShouldShow] = useState(false);
+    const lastScrollTop = useRef(0);
     const location = useLocation();
 
-    // Delay the navbar appearance
+    // Show navbar after intro animation finishes
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setShouldShow(true);
-        }, 4000); // 4 second delay to match hero animation
-
+        const timer = setTimeout(() => setShouldShow(true), 4000);
         return () => clearTimeout(timer);
     }, []);
 
+    // Hide on scroll down, show on scroll up
+    // Using a ref for lastScrollTop so handler never gets stale closure value
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
-            setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
 
-            const sections = document.querySelectorAll('section');
+            // Always show at top
+            if (scrollTop <= 10) {
+                setIsVisible(true);
+                lastScrollTop.current = 0;
+                return;
+            }
+
+            if (scrollTop > lastScrollTop.current + 5) {
+                setIsVisible(false); // scrolling down
+            } else if (scrollTop < lastScrollTop.current - 5) {
+                setIsVisible(true); // scrolling up
+            }
+
+            lastScrollTop.current = scrollTop;
+
+            // Detect active section
+            const sections = document.querySelectorAll('section[id]');
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top <= 50 && rect.bottom >= 50) {
+                if (rect.top <= 80 && rect.bottom >= 80) {
                     setActiveSection(section.id);
                 }
             });
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollTop]);
+    }, []); // empty deps — ref keeps value fresh
 
+    // Set active from route
     useEffect(() => {
-        switch (location.pathname) {
-            case '/':
-                setActiveSection('Home');
-                break;
-            case '/Team':
-                setActiveSection('Team');
-                break;
-            case '/Gallery':
-                setActiveSection('Gallery');
-                break;
-            default:
-                setActiveSection('');
-        }
-    }, [location]);
+        const map = { '/': 'Home', '/Team': 'Team', '/Gallery': 'Gallery' };
+        if (map[location.pathname]) setActiveSection(map[location.pathname]);
+    }, [location.pathname]);
 
     const navigationItems = [
         { name: 'Home', path: '/' },
@@ -66,143 +65,98 @@ const Navbar = () => {
         { name: 'Gallery', path: '/Gallery' },
         { name: 'Timeline', path: '/#Timeline' },
         { name: 'Team', path: '/Team' },
-        { name: 'Contact', path: '/#Contact' }
+        { name: 'Contact', path: '/#Contact' },
     ];
 
-    // Animation variants
-    const navbarVariants = {
-        hidden: {
-            y: -100,
-            opacity: 0
-        },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 1.2,
-                ease: [0.6, 0.05, 0.01, 0.9]
-            }
-        },
-        exit: {
-            y: -100,
-            opacity: 0,
-            transition: {
-                duration: 0.3
-            }
-        }
-    };
+    if (!shouldShow) return null;
 
     return (
-        <AnimatePresence>
-            {shouldShow && (
-                <motion.div 
-                    id='Navbar' 
-                    className="fixed top-0 z-50 w-full flex justify-center items-start px-2"
-                    initial="hidden"
-                    animate={isVisible ? "visible" : "exit"}
-                    exit="exit"
-                    variants={navbarVariants}
-                >
-                    <nav className={`w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[85%] mt-2 sm:mt-3 lg:mt-4 
-                        rounded-xl sm:rounded-2xl transition-all duration-300 
-                        backdrop-blur-md bg-opacity-70 bg-gray-900 border border-gray-700/30
-                        shadow-lg hover:bg-opacity-80`}>
-                        <div className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3">
-                            <div className="flex items-center justify-between">
-                                {/* Logo and Brand */}
-                                <motion.div
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.2, duration: 0.8 }}
-                                >
-                                    <Link to="/" className="flex items-center space-x-3">
-                                        <img src="/AbraxasLogo.png" className="h-7 sm:h-8 lg:h-10 rounded-full ring-blue-500/50" alt="Logo" />
-                                        <h6 className="self-center text-xl sm:text-xl md:text-3xl font-bold bg-gradient-to-r from-white to-purple-600 text-transparent bg-clip-text">
-                                            ABRAXAS
-                                        </h6>
-                                    </Link>
-                                </motion.div>
+        <motion.div
+            className="fixed top-0 z-50 w-full flex justify-center items-start px-2 pointer-events-none"
+            initial={{ y: -80, opacity: 0 }}
+            animate={{
+                y: isVisible ? 0 : -80,
+                opacity: isVisible ? 1 : 0,
+            }}
+            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+            <nav className="pointer-events-auto w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[85%] mt-3
+                rounded-2xl backdrop-blur-md bg-black/70 border border-white/10 shadow-lg">
+                <div className="px-3 lg:px-5 py-2.5 sm:py-3">
+                    <div className="flex items-center justify-between">
 
-                                {/* Mobile Menu Button */}
-                                <motion.button
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.4, duration: 0.8 }}
-                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                    className="lg:hidden p-1.5 sm:p-2 text-gray-300 hover:text-white rounded-lg hover:bg-gray-800/50"
-                                    aria-expanded={isMenuOpen}
-                                    aria-label="Toggle navigation"
-                                >
-                                    {isMenuOpen ? (
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    ) : (
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                                        </svg>
-                                    )}
-                                </motion.button>
-
-                                {/* Desktop Navigation */}
-                                <div className="hidden lg:flex lg:items-center">
-                                    <ul className="flex flex-wrap space-x-1">
-                                        {navigationItems.map((item, index) => (
-                                            <motion.li 
-                                                key={item.name}
-                                                initial={{ opacity: 0, y: -20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.6 + (index * 0.1), duration: 0.8 }}
-                                            >
-                                                <Link
-                                                    to={item.path}
-                                                    className={`block px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-sm font-medium transition-all duration-200
-                                                        ${activeSection === item.name.replace(' ', '')
-                                                            ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
-                                                            : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'}`}
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            </motion.li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-
-                            {/* Mobile Navigation */}
-                            <motion.div 
-                                initial={{ height: 0 }}
-                                animate={{ height: isMenuOpen ? "auto" : 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="lg:hidden overflow-hidden"
+                        {/* Logo */}
+                        <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
+                            <img src="/AbraxasLogo.png" className="h-7 sm:h-8 lg:h-9 rounded-full" alt="Logo" />
+                            <span
+                                style={{ fontFamily: "'Syne', sans-serif" }}
+                                className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-widest"
                             >
-                                <ul className="flex flex-col space-y-1 mt-2 sm:mt-3">
-                                    {navigationItems.map((item) => (
-                                        <motion.li 
-                                            key={item.name}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <Link
-                                                to={item.path}
-                                                onClick={() => setIsMenuOpen(false)}
-                                                className={`block px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200
-                                                    ${activeSection === item.name.replace(' ', '')
-                                                        ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
-                                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'}`}
-                                            >
-                                                {item.name}
-                                            </Link>
-                                        </motion.li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        </div>
-                    </nav>
-                </motion.div>
-            )}
-        </AnimatePresence>
+                                ABRAXAS
+                            </span>
+                        </Link>
+
+                        {/* Desktop nav */}
+                        <ul className="hidden lg:flex items-center gap-1">
+                            {navigationItems.map((item) => (
+                                <li key={item.name}>
+                                    <Link
+                                        to={item.path}
+                                        style={{ fontFamily: "'DM Sans', sans-serif" }}
+                                        className={`block px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200
+                                            ${activeSection === item.name
+                                                ? 'bg-white/10 text-white border border-white/20'
+                                                : 'text-white/50 hover:text-white hover:bg-white/5'
+                                            }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {/* Mobile hamburger */}
+                        <button
+                            onClick={() => setIsMenuOpen(prev => !prev)}
+                            className="lg:hidden p-2 text-white/60 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                            aria-label="Toggle menu"
+                        >
+                            {isMenuOpen ? (
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Mobile menu */}
+                    {isMenuOpen && (
+                        <ul className="lg:hidden flex flex-col gap-1 mt-3 pb-1">
+                            {navigationItems.map((item) => (
+                                <li key={item.name}>
+                                    <Link
+                                        to={item.path}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        style={{ fontFamily: "'DM Sans', sans-serif" }}
+                                        className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                                            ${activeSection === item.name
+                                                ? 'bg-white/10 text-white border border-white/20'
+                                                : 'text-white/50 hover:text-white hover:bg-white/5'
+                                            }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            </nav>
+        </motion.div>
     );
 };
 

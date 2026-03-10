@@ -18,11 +18,6 @@ const EventsCard = () => {
   const Card = ({ card }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
-    const handleFlip = (e) => {
-      e.stopPropagation();
-      setIsFlipped(!isFlipped);
-    };
-
     return (
       <motion.div
         className="relative md:w-[360px] md:h-[470px] w-[300px] h-[400px] perspective-1000 mx-auto mb-12 md:mb-0"
@@ -35,39 +30,35 @@ const EventsCard = () => {
           animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={{ duration: 0.6, type: "spring", damping: 20 }}
         >
+          {/* Front */}
           <div
-            className="absolute w-full h-full backface-hidden rounded-2xl overflow-hidden"
-            style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8))' }}
+            className="absolute w-full h-full backface-hidden rounded-2xl overflow-hidden border border-white/10"
+            style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85))' }}
           >
-            <img
-              src={card.image}
-              alt={card.title}
-              className="absolute w-full h-full object-contain" // Changed from object-cover to object-contain
-            />
-            <div className="absolute bottom-0 w-full p-4 text-white">
-              <h2 className="text-xl font-bold mb-2">{card.title}</h2>
-              <p className="text-sm mb-3 opacity-90 line-clamp-2">{card.description}</p>
+            <img src={card.image} alt={card.title} className="absolute w-full h-full object-contain" />
+            <div className="absolute bottom-0 w-full p-5 text-white">
+              <h2 style={{ fontFamily: "'Syne', sans-serif" }} className="text-xl font-bold mb-2 tracking-tight">{card.title}</h2>
+              <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-sm mb-3 text-white/60 line-clamp-2">{card.description}</p>
               <button
-                onClick={handleFlip}
-                className="px-4 py-2 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-lg text-sm font-medium transition-colors"
+                onClick={(e) => { e.stopPropagation(); setIsFlipped(true); }}
+                className="px-4 py-2 bg-white/10 border border-white/20 hover:bg-white/20 rounded-lg text-sm font-medium transition-all duration-200 text-white"
               >
                 Read More
               </button>
             </div>
           </div>
 
-          <div
-            className="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-900/95 rounded-2xl p-4"
-          >
+          {/* Back */}
+          <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-black/95 border border-white/10 rounded-2xl p-5">
             <div className="text-white h-full flex flex-col">
-              <h2 className="text-xl font-bold mb-2">{card.title}</h2>
-              <p className="text-sm leading-relaxed flex-grow overflow-y-auto">{card.description}</p>
+              <h2 style={{ fontFamily: "'Syne', sans-serif" }} className="text-xl font-bold mb-3 tracking-tight">{card.title}</h2>
+              <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-sm leading-relaxed flex-grow overflow-y-auto text-white/60">{card.description}</p>
               <button
-                onClick={handleFlip}
-                className="mt-3 px-4 py-2 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 w-fit"
+                onClick={(e) => { e.stopPropagation(); setIsFlipped(false); }}
+                className="mt-3 px-4 py-2 bg-white/10 border border-white/20 hover:bg-white/20 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 w-fit text-white"
               >
                 <ArrowLeft size={16} />
-                Back to Card
+                Back
               </button>
             </div>
           </div>
@@ -78,26 +69,15 @@ const EventsCard = () => {
 
   return (
     <div className="min-h-screen bg-[#0A0B1A] relative py-12 px-6 overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(2px 2px at calc(100% * var(--x)) calc(100% * var(--y)), white, transparent)`,
-            backgroundSize: '200px 200px',
-            transform: 'translate(0px, 0px)',
-            '--x': 0.5,
-            '--y': 0.5,
-          }}
-        />
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="flex justify-center gap-6 mb-10">
+        <div className="flex justify-center gap-4 mb-10">
           <button
             onClick={() => setActiveTab('events')}
-            className={`px-8 py-3 rounded-xl text-lg font-medium transition-all duration-300 
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            className={`px-8 py-3 rounded-xl text-sm font-medium transition-all duration-300 border
               ${activeTab === 'events'
-                ? 'bg-gradient-to-r from-indigo-700 to-purple-700 text-white shadow-lg shadow-indigo-500/25'
-                : 'bg-slate-800/50 text-gray-300 hover:bg-slate-700/50'}`}
+                ? 'bg-white/10 text-white border-white/30'
+                : 'bg-transparent text-white/40 border-white/10 hover:bg-white/5 hover:text-white/70'}`}
           >
             2026 Events
           </button>
@@ -112,7 +92,7 @@ const EventsCard = () => {
             transition={{ duration: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8"
           >
-            {(activeTab === 'workshops' ? workshopCards : eventCards).map(card => (
+            {eventCards.map(card => (
               <Card key={card.id} card={card} />
             ))}
           </motion.div>

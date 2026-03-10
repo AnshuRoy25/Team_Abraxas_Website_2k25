@@ -1,160 +1,104 @@
-import React, { useState } from 'react';
-import { FaLinkedin, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import { motion, useAnimation } from 'framer-motion';
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import emailjs from 'emailjs-com';
-import ContactsData from './Contacts.json';
 
-const Contact = () => {
-    const [Contacts] = useState(ContactsData);
-    const [activeIndex, setActiveIndex] = useState(null);
-    const controls = useAnimation();
-    const [ref, inView] = useInView({ triggerOnce: true });
-    const [formData, setFormData] = useState({
-        to_name: '',
-        from_name: '',
-        message: ''
-    });
-    const [loading, setLoading] = useState(false);
+const TimelineEvent = ({ date, events }) => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
-    const toggleContact = (index) => {
-        setActiveIndex(activeIndex === index ? null : index);
-    };
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-        emailjs.sendForm('service_ku5tyb3', 'template_6jqzaku', e.target, 'k0Pzk-CjxMe24DpZY')
-            .then((result) => {
-                setLoading(false);
-                alert('Message sent successfully!');
-                setFormData({
-                    to_name: '',
-                    from_name: '',
-                    message: ''
-                });
-            }, (error) => {
-                setLoading(false);
-                console.error(error.text);
-                alert('An error occurred, please try again.');
-            });
-    };
-
-    const containerVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.05 } }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0 }
-    };
-
-    if (inView) {
-        controls.start('visible');
-    }
-
-    return (
-        <div className="min-h-screen bg-black flex items-center justify-center p-4">
-            <motion.div
-                ref={ref}
-                className="w-full max-w-5xl  bg-opacity-30 backdrop-filter backdrop-blur-lg p-4 md:p-6 rounded-lg shadow-md flex flex-col md:flex-row md:justify-center"
-                initial="hidden"
-                animate={controls}
-                variants={containerVariants}
-            >
-                {/* Contact Us Section */}
-                <motion.div
-                    className="w-full md:w-1/2 md:pl-4 mt-6 md:mt-0 flex flex-col items-center justify-center"
-                    variants={itemVariants}
-                >
-                    <h1 className="text-3xl md:text-4xl font-bold text-slate-300 text-center">
-                        <span className="bg-gradient-to-r from-purple-900 to-blue-700 text-transparent bg-clip-text">
-                            Contact Us
-                        </span>
-                    </h1>
-
-                    <form className="w-full max-w-lg mt-4 bg-gray-700 p-4 md:p-6 rounded-lg" onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <label className="block text-slate-300 text-sm font-bold mb-2" htmlFor="to_name">
-                                Name
-                            </label>
-                            <input
-                                className="w-full p-2 bg-slate-800 text-slate-50 rounded-lg focus:outline-none"
-                                type="text"
-                                id="to_name"
-                                name="to_name"
-                                value={formData.to_name}
-                                onChange={handleChange}
-                                placeholder="Your Name"
-                                required
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-slate-300 text-sm font-bold mb-2" htmlFor="from_name">
-                                Email
-                            </label>
-                            <input
-                                className="w-full p-2 bg-slate-800 text-slate-50 rounded-lg focus:outline-none"
-                                type="email"
-                                id="from_name"
-                                name="from_name"
-                                value={formData.from_name}
-                                onChange={handleChange}
-                                placeholder="Your Email"
-                                required
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-slate-300 text-sm font-bold mb-2" htmlFor="message">
-                                Message
-                            </label>
-                            <textarea
-                                className="w-full p-2 bg-slate-800 text-slate-50 rounded-lg focus:outline-none"
-                                id="message"
-                                name="message"
-                                rows="4"
-                                value={formData.message}
-                                onChange={handleChange}
-                                placeholder="Your Message"
-                                required
-                            ></textarea>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit"
-                            >
-                                {loading ? "Sending..." : "Send"}
-                            </button>
-                        </div>
-                    </form>
-                    <div className="flex space-x-6 md:space-x-8 mt-4">
-                        <a href="https://www.linkedin.com/company/abraxas-nith/mycompany/" target="_blank" rel="noopener noreferrer" className="text-3xl md:text-4xl text-blue-600 hover:text-blue-800 transition-colors duration-300 icon-hover">
-                            <FaLinkedin />
-                        </a>
-                        <a href="https://github.com/Team-Abraxas" target="_blank" rel="noopener noreferrer" className="text-3xl md:text-4xl text-blue hover:text-blue-800 transition-colors duration-300 icon-hover">
-                            <FaGithub />
-                        </a>
-                        <a href="https://www.instagram.com/team_abraxas" target="_blank" rel="noopener noreferrer" className="text-3xl md:text-4xl text-blue hover:text-blue-800 transition-colors duration-300 icon-hover">
-                            <FaInstagram />
-                        </a>
-                    </div>
-                </motion.div>
-            </motion.div>
-            <style jsx>{`
-                .icon-hover:hover {
-                    transform: scale(1.3); /* Increase size on hover */
-                }
-            `}</style>
+  return (
+    <div ref={ref} className="relative w-full md:w-1/2 lg:w-1/3 xl:w-1/6 px-4 mb-12 pl-8">
+      <div className={`transform transition-all duration-1000 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        <div style={{ fontFamily: "'Syne', sans-serif" }} className="text-base font-bold mb-14 text-white tracking-wide">
+          {date}
         </div>
-    );
+
+        <div className="absolute left-4 w-px bg-transparent top-0 mt-10 overflow-hidden h-full">
+          <div className={`w-px bg-white/20 h-full transform origin-top transition-transform duration-1000 ${inView ? 'scale-y-100' : 'scale-y-0'}`} />
+          <div className={`w-3 h-3 rounded-full bg-white absolute left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${inView ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+            <div className="absolute w-full h-full rounded-full bg-white animate-ping opacity-40" />
+          </div>
+          <div className={`absolute left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)] animate-moveDown">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white to-white/30 opacity-0 animate-colorChange" />
+            </div>
+          </div>
+          <div className={`w-3 h-3 rounded-full bg-white/60 absolute left-1/2 transform -translate-x-1/2 bottom-0 transition-all duration-1000 ${inView ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+            <div className="absolute w-full h-full rounded-full bg-white/40 animate-pulse" />
+          </div>
+        </div>
+
+        <div className="space-y-4 relative">
+          {events.map((event, index) => (
+            <div
+              key={index}
+              className={`relative p-4 rounded-lg transform transition-all duration-1000 group overflow-hidden border border-white/5
+                ${inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+              style={{
+                transitionDelay: `${index * 200}ms`,
+                background: 'rgba(255,255,255,0.03)'
+              }}
+            >
+              <div className="absolute inset-0 bg-white/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out" />
+              <div className="relative z-10">
+                <div style={{ fontFamily: "'DM Sans', sans-serif" }} className="font-medium text-white/80 mb-1 text-sm">
+                  {event.date}: {event.title}
+                </div>
+                {event.subtitle && (
+                  <div style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-xs text-white/30">{event.subtitle}</div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Contact;
+const Timeline = () => {
+  const timelineData = [
+    { month: 'October 2025', events: [{ date: '3', title: 'Sophomore Interviews' }] },
+    { month: 'January 2026', events: [{ date: '16', title: 'Nimbus Orientation', subtitle: 'Introducing Abraxas to Freshmen' }, { date: '17 & 18', title: 'Freshmen Interviews' }] },
+    { month: 'February 2026', events: [{ date: '15', title: 'Innovision' }] },
+    { month: 'March 2026', events: [{ date: '11', title: 'Game Theory Workshop' }] },
+    { month: 'April 2026', events: [{ date: '', title: 'To be Announced', subtitle: '' }] }
+  ];
+
+  return (
+    <div className="min-h-screen bg-black p-4 md:p-8">
+      <style jsx global>{`
+        @keyframes moveDown {
+          0% { transform: translate(-50%, 0); }
+          100% { transform: translate(-50%, 100%); }
+        }
+        @keyframes colorChange {
+          0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; }
+        }
+        .animate-moveDown { animation: moveDown 2s ease-in-out infinite; }
+        .animate-colorChange { animation: colorChange 2s ease-in-out infinite; }
+        @media (max-width: 1024px) {
+          .timeline-container {
+            height: calc(100vh - 8rem);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+          }
+        }
+      `}</style>
+
+      <h1 style={{ fontFamily: "'Syne', sans-serif" }} className="text-3xl md:text-4xl font-bold text-white mb-3 text-center tracking-widest">
+        TIMELINE
+      </h1>
+      <div className="w-12 h-px bg-white/20 mx-auto mb-12"></div>
+
+      <div className="timeline-container">
+        <div className="flex flex-col md:flex-row flex-wrap justify-center max-w-7xl mx-auto">
+          {timelineData.map((month, index) => (
+            <TimelineEvent key={index} date={month.month} events={month.events} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Timeline;
