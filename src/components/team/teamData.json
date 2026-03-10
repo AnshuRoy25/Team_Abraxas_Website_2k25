@@ -43,6 +43,33 @@
                     "linkedin": "https://www.linkedin.com/in/superstar14?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                     "instagram": "https://www.instagram.com/___superstar___14"
                 }
+            },
+             {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1773144370/IMG_20260309_231413_-_dhruvgpt28_ijw7mc.jpg",
+                "name": "Dhruv Gupta",
+                "social": {
+                    "github": "https://github.com/dhruvgpt28",
+                    "linkedin": "https://www.linkedin.com/in/dhruv-gupta-509028376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    "instagram": "https://www.instagram.com/dhruvgpt28?igsh=azBheGc3aTNuOTNl"
+                }
+            },
+             {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1773144370/1000047943_-_Mr._PANKAJ_myjkeg.jpg",
+                "name": "Pankaj",
+                "social": {
+                    "github": "",
+                    "linkedin": "https://www.linkedin.com/in/pankaj-verma-18b5a6226?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+                    "instagram": "https://www.instagram.com/official_pv_singh_0001?igsh=MW42cXViOTN3MXRnMg=="
+                }
+            },
+             {
+                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1773144370/25BPH014_DeepikaChauhan_1_1_-_Deepika_Chauhan_cikaul.jpg",
+                "name": "Deepika Chauhan",
+                "social": {
+                    "github": "",
+                    "linkedin": "https://www.linkedin.com/in/deepika-chauhan-9243bb384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    "instagram": ""
+                }
             }
     ],
     "Executives": [
