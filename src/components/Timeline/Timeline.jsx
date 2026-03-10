@@ -103,7 +103,7 @@ const Timeline = () => {
     {
       month: 'March 2026',
       events: [
-        { date: '10', title: 'Game Theory Workshop' },
+        { date: '11', title: 'Game Theory Workshop' },
       ]
     },
     {
