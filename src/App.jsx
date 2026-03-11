@@ -11,10 +11,9 @@ import About from './components/about/About';
 import Footer from './components/footer/Footer';
 import Events from './components/Events/Events';
 import IntroAnimation from './components/intro/IntroAnimation';
-import GallerySection from './components/Gallery/GallerySection';
 
-// Team is lazy loaded — only download when user visits
 const Team = lazy(() => import('./components/team/Team'));
+const Gallery = lazy(() => import('./components/Gallery/Gallery'));
 
 const LoadingScreen = () => (
   <div className="flex items-center justify-center h-screen bg-black">
@@ -46,6 +45,171 @@ const ScrollToTop = () => {
   return null;
 };
 
+// ── Cinematic Banner Component ──
+const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, gap = 'my-16' }) => (
+  <section className={`relative z-10 w-full overflow-hidden bg-black ${gap}`}>
+    <style>{`
+      .banner-img-wrap { aspect-ratio: 1.8 / 1; }
+      @media (min-width: 641px)  { .banner-img-wrap { aspect-ratio: 2.5 / 1; } }
+      @media (min-width: 1024px) { .banner-img-wrap { aspect-ratio: 3 / 1; } }
+    `}</style>
+
+    <div className="banner-img-wrap relative w-full overflow-hidden">
+      <img
+        src={src}
+        alt="Cinematic banner"
+        className="w-full h-full object-cover object-center"
+        style={{
+          filter: 'grayscale(100%) brightness(0.65) contrast(1.1)',
+          display: 'block',
+        }}
+      />
+
+      {/* vignette left/right */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 30%, transparent 60%, rgba(0,0,0,0.6) 100%)',
+        }}
+      />
+
+      {/* bottom fade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.55) 100%)',
+        }}
+      />
+
+      {/* text */}
+      <div
+        className={`absolute inset-0 flex items-center justify-center px-6
+          ${textSide === 'left'
+            ? 'sm:justify-start sm:pl-10 md:pl-16 lg:pl-24'
+            : 'sm:justify-end sm:pr-10 md:pr-16 lg:pr-24'
+          }`}
+      >
+        <div
+          className={`text-center max-w-[85vw] sm:max-w-xs md:max-w-sm lg:max-w-md
+            ${textSide === 'left' ? 'sm:text-left' : 'sm:text-right'}`}
+        >
+          {/* label */}
+          <p
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 'clamp(0.5rem, 2vw, 0.8rem)',
+              letterSpacing: '0.25em',
+              color: 'rgba(255,255,255,0.45)',
+            }}
+            className="uppercase mb-2"
+          >
+            {label}
+          </p>
+
+          {/* main text */}
+          <p
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(1.1rem, 4vw, 3.5rem)',
+              lineHeight: 1.25,
+              color: 'rgba(255,255,255,0.95)',
+              textShadow: '0 2px 20px rgba(0,0,0,0.95)',
+            }}
+            className="lowercase"
+          >
+            {line1 && <>{line1}<br /></>}
+            {line2 && <>{line2}<br /></>}
+            {line3 && (
+              <span style={{ color: 'rgba(255,255,255,0.4)' }}>{line3}</span>
+            )}
+          </p>
+
+          {/* divider */}
+          <div
+            className={`w-8 h-px bg-white/25 mt-3 mx-auto
+              ${textSide === 'left' ? 'sm:mx-0' : 'sm:ml-auto sm:mr-0'}`}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// ── Events Banner Card Component ──
+const EventsBannerCard = () => (
+  <div className="flex justify-center px-4 sm:px-8 lg:px-16 my-16">
+    <div className="w-full max-w-5xl flex flex-col sm:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
+
+      {/* image — left */}
+      <div
+        className="rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 w-full sm:w-[55%]"
+        style={{ aspectRatio: '16 / 9', boxShadow: '0 8px 32px rgba(0,0,0,0.6)' }}
+      >
+        <img
+          src="/ab1.jpg"
+          alt="Events banner"
+          className="w-full h-full object-cover object-center"
+          style={{
+            filter: 'grayscale(100%) contrast(1.05)',
+            display: 'block',
+            transition: 'filter 0.6s ease',
+          }}
+          onMouseEnter={e => e.currentTarget.style.filter = 'grayscale(0%)'}
+          onMouseLeave={e => e.currentTarget.style.filter = 'grayscale(100%) contrast(1.05)'}
+        />
+      </div>
+
+      {/* text — right */}
+      <div className="flex flex-col justify-center text-left flex-1">
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+            letterSpacing: '0.3em',
+            color: 'rgba(255,255,255,0.35)',
+          }}
+          className="uppercase mb-3"
+        >
+          Team Abraxas
+        </p>
+
+        <p
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(1.4rem, 3.5vw, 3rem)',
+            lineHeight: 1.2,
+            color: 'rgba(255,255,255,0.95)',
+          }}
+          className="lowercase mb-4"
+        >
+          where ideas<br />
+          become<br />
+          <span style={{ color: 'rgba(255,255,255,0.35)' }}>experiments.</span>
+        </p>
+
+        <div className="w-8 h-px bg-white/20 mb-4" />
+
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 'clamp(0.75rem, 1.5vw, 0.95rem)',
+            color: 'rgba(255,255,255,0.35)',
+            lineHeight: 1.7,
+          }}
+          className="font-light"
+        >
+          From workshops to competitions,<br />
+          every event is a chance to push<br />
+          the boundaries of what's possible.
+        </p>
+      </div>
+
+    </div>
+  </div>
+);
+
 function App() {
   const [showIntro, setShowIntro] = useState(true);
 
@@ -54,7 +218,7 @@ function App() {
       {showIntro ? (
         <IntroAnimation onComplete={() => setShowIntro(false)} />
       ) : (
-        <div className="w-screen overflow-x-hidden">
+        <div style={{ width: '100vw' }}>
           <Router>
             <ScrollToTop />
             <section id="Navbar">
@@ -71,18 +235,43 @@ function App() {
                       backgroundColor="black"
                     />
                     <Hero />
+
+                    {/* ── Cinematic banner before About ── */}
+                    <CinematicBanner
+                      src="abraxas-2.jpeg"
+                      textSide="left"
+                      label="Team Abraxas"
+                      line1="built by curious"
+                      line2="minds, driven by"
+                      line3="physics."
+                    />
+
                     <section id="About" className="relative z-10 bg-black">
                       <About />
                     </section>
+
+                    {/* ── Cinematic banner before Projects ── */}
+                    <CinematicBanner
+                      src="/abraxas-3.jpeg"
+                      textSide="right"
+                      label="Team Abraxas"
+                      line1="we don't just"
+                      line2="study the universe."
+                      line3="we question it."
+                    />
+
+                    {/* ── Projects — no overflow, no height constraints ── */}
                     <section id="Projects">
                       <Projects />
                     </section>
+
+                    {/* ── Events banner card ── */}
+                    <EventsBannerCard />
+
                     <section id="Events">
                       <Events />
                     </section>
-                    <section id="Gallery" className="relative z-10 bg-black">
-                      <GallerySection />
-                    </section>
+
                     <section id="Timeline">
                       <Timeline />
                     </section>
@@ -95,6 +284,7 @@ function App() {
                   </>
                 } />
                 <Route path="/Team" element={<Team />} />
+                <Route path="/Gallery" element={<Gallery />} />
               </Routes>
             </Suspense>
           </Router>
