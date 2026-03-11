@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import CountUp from "react-countup";
 import RoverCanvas from "./Rover";
+import OrbitalSystem from "./OrbitalSystem";
 
 const About = () => {
     const { scrollY } = useViewportScroll();
@@ -16,13 +17,20 @@ const About = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 50, delay: 0.7 }}
             >
+                {/* Text + Rover Row */}
                 <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12">
                     <div className="flex flex-col w-full lg:w-1/2">
-                        <h1 style={{ fontFamily: "'Syne', sans-serif" }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 md:mb-6 tracking-tight">
+                        <h1
+                            style={{ fontFamily: "'Syne', sans-serif" }}
+                            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 md:mb-6 tracking-tight"
+                        >
                             Who we are
                         </h1>
                         <div className="w-12 h-px bg-white/40 mb-4 sm:mb-6"></div>
-                        <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-sm sm:text-base md:text-lg max-w-prose tracking-normal text-white/60 leading-relaxed font-light">
+                        <p
+                            style={{ fontFamily: "'DM Sans', sans-serif" }}
+                            className="text-sm sm:text-base md:text-lg max-w-prose tracking-normal text-white/60 leading-relaxed font-light"
+                        >
                             Team Abraxas is the engineering physics branch's departmental club — a vibrant community driven by passion for technology and discovery. We explore diverse physics disciplines from quantum computing to particle physics, creating technological innovations while unraveling universal mysteries. As physics enthusiasts, we've built a space where curiosity thrives and knowledge grows. Through engaging discussions, demonstrations, and groundbreaking discoveries, we're building a legacy that combines scientific exploration with practical innovation.
                         </p>
                     </div>
@@ -32,8 +40,14 @@ const About = () => {
                     </div>
                 </div>
 
+                {/* Orbital System — placed between rover and stats, same as reference */}
+                <div className="relative z-5 flex justify-center items-center w-full overflow-hidden">
+                    <OrbitalSystem />
+                </div>
+
+                {/* CountUp Stats */}
                 <motion.div
-                    className="mt-8 sm:mt-12 md:mt-16 lg:mt-24 w-full"
+                    className="mt-0 w-full"
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 50, delay: 1 }}
@@ -42,14 +56,23 @@ const About = () => {
                         {[
                             { end: 15, label: "Projects" },
                             { end: 46, label: "Members" },
-                            { end: 1, label: "Wins" },
-                            { end: 2, label: "Events" },
+                            { end: 1,  label: "Wins" },
+                            { end: 2,  label: "Events" },
                         ].map((item, i) => (
-                            <div key={i} className="text-center p-6 sm:p-8 bg-white/[0.03] hover:bg-white/[0.06] transition-colors duration-300">
-                                <h3 style={{ fontFamily: "'Syne', sans-serif" }} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">
+                            <div
+                                key={i}
+                                className="text-center p-6 sm:p-8 bg-white/[0.03] hover:bg-white/[0.06] transition-colors duration-300"
+                            >
+                                <h3
+                                    style={{ fontFamily: "'Syne', sans-serif" }}
+                                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"
+                                >
                                     <CountUp end={item.end} duration={5} />
                                 </h3>
-                                <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-xs sm:text-sm font-medium text-white/40 uppercase tracking-widest">
+                                <p
+                                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                                    className="text-xs sm:text-sm font-medium text-white/40 uppercase tracking-widest"
+                                >
                                     {item.label}
                                 </p>
                             </div>

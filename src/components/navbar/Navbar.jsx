@@ -12,7 +12,7 @@ const Navbar = () => {
 
     // Show navbar after intro animation finishes
     useEffect(() => {
-        const timer = setTimeout(() => setShouldShow(true), 4000);
+        const timer = setTimeout(() => setShouldShow(true), 2000);
         return () => clearTimeout(timer);
     }, []);
 

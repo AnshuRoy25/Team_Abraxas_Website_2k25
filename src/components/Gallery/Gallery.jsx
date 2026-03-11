@@ -104,7 +104,8 @@ const Gallery = () => {
   }, [selectedImage, currentImageIndex, selectedYear]);
 
   return (
-    <div className="h-screen overflow-y-auto overflow-x-hidden bg-black" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+    // ---- CHANGED: removed h-screen overflow-y-auto so window.scrollTo works ----
+    <div className="min-h-screen w-full bg-black overflow-x-hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       <div className="container mx-auto px-4 py-8">
 
         {/* Header */}
@@ -168,6 +169,7 @@ const Gallery = () => {
                     <img
                       src={image}
                       alt={`Gallery ${index + 1}`}
+                      loading="lazy"
                       className="w-full h-full object-cover transform transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-60"
                     />
 
