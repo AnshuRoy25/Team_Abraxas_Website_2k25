@@ -94,7 +94,7 @@ const Hero = () => {
     return (
         <React.Fragment>
 
-            <div className="relative h-screen bg-black text-white overflow-hidden flex items-center justify-center">
+            <div className="relative h-screen bg-black text-white overflow-hidden flex items-start sm:items-center justify-center pt-8 sm:pt-0">
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="stars"></div>
                 </div>
@@ -103,11 +103,11 @@ const Hero = () => {
                     variants={staggerChildren}
                     initial="initial"
                     animate="animate"
-                    className="relative z-10 flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 -mt-16"
+                    className="relative z-10 flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 sm:-mt-16"
                 >
                     <motion.div
                         variants={atomAnimation}
-                        className="max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] mb-3 sm:mb-4 md:mb-6"
+                        className="max-w-[250px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] mb-3 sm:mb-4 md:mb-6"
                     >
                         <Atom />
                     </motion.div>
@@ -117,7 +117,7 @@ const Hero = () => {
                         className="mb-3 sm:mb-4 md:mb-6 text-center w-full"
                     >
                         <div className="inline-block">
-                            <h2 style={{ fontFamily: "'Syne', sans-serif" }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest text-white">
+                            <h2 style={{ fontFamily: "'Syne', sans-serif" }} className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest text-white">
                                 TEAM ABRAXAS
                             </h2>
                             <div className="h-px bg-white/30 mt-3"></div>
@@ -128,7 +128,7 @@ const Hero = () => {
                         variants={contentAnimation}
                         className="text-center w-full max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl px-4"
                     >
-                        <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="mb-6 sm:mb-8 text-white/60 text-sm sm:text-base tracking-wide leading-relaxed font-light italic">
+                        <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="mb-6 sm:mb-8 text-white/60 text-base sm:text-base tracking-wide leading-relaxed font-light italic">
                             "Life, much like physics, full of forces acting on you. It's not about avoiding them, but learning how to balance and use them to propel yourself forward."
                         </p>
 
@@ -158,30 +158,25 @@ const Hero = () => {
                 </motion.div>
             </div>
 
-            <div ref={quoteContainerRef} className="relative z-[5] bg-black h-[120vh] w-full">
-                <div className="sticky top-0 h-[100vh] w-full flex items-center justify-start px-[5vw]">
-                    <div className="flex flex-col items-start w-full">
-                        <div
-                            className="text-white uppercase font-sans font-semibold mb-6"
-                            style={{ fontSize: "0.75rem", letterSpacing: "0.3em" }}
-                        >
-                            NOT EVERYONE QUESTIONS WHY.
-                        </div>
-                        <div
-                            style={{
-                                fontFamily: "'Playfair Display', serif",
-                                fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                                lineHeight: 1.4,
-                                maxWidth: "80vw"
-                            }}
-                            className="text-left lowercase text-white"
-                        >
-                            {words.map((word, i) => (
-                                <AnimatedWord key={i} isLit={litWords.includes(i)}>
-                                    {word}
-                                </AnimatedWord>
-                            ))}
-                        </div>
+            <div className="relative z-[5] bg-black w-full py-20 px-[5vw]">
+                <div className="flex flex-col items-start w-full max-w-5xl mx-auto">
+                    <div
+                        className="text-white uppercase font-sans font-semibold mb-6"
+                        style={{ fontSize: "0.75rem", letterSpacing: "0.3em" }}
+                    >
+                        NOT EVERYONE QUESTIONS WHY.
+                    </div>
+                    <div
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            fontSize: "clamp(2.1rem, 3.5vw, 4rem)",
+                            lineHeight: 1.4,
+                            maxWidth: "90vw",
+                            color: "rgba(255,255,255,0.9)",
+                        }}
+                        className="text-left lowercase text-white"
+                    >
+                        {quoteText}
                     </div>
                 </div>
             </div>

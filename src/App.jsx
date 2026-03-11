@@ -52,6 +52,7 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
       .banner-img-wrap { aspect-ratio: 1.8 / 1; }
       @media (min-width: 641px)  { .banner-img-wrap { aspect-ratio: 2.5 / 1; } }
       @media (min-width: 1024px) { .banner-img-wrap { aspect-ratio: 3 / 1; } }
+      @media (max-width: 640px)  { .banner-text { font-size: 2rem !important; } }
     `}</style>
 
     <div className="banner-img-wrap relative w-full overflow-hidden">
@@ -117,7 +118,7 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
               color: 'rgba(255,255,255,0.95)',
               textShadow: '0 2px 20px rgba(0,0,0,0.95)',
             }}
-            className="lowercase"
+            className="lowercase banner-text"
           >
             {line1 && <>{line1}<br /></>}
             {line2 && <>{line2}<br /></>}
@@ -139,12 +140,12 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
 
 // ── Events Banner Card Component ──
 const EventsBannerCard = () => (
-  <div className="flex justify-center px-4 sm:px-8 lg:px-16 my-16">
+ <div className="flex justify-center px-4 sm:px-8 lg:px-16 mt-4 mb-8 sm:my-16">
     <div className="w-full max-w-5xl flex flex-col sm:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
 
       {/* image — left */}
       <div
-        className="rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 w-full sm:w-[55%]"
+        className="rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 w-full sm:w-[55%] mb-8 sm:mb-0"
         style={{ aspectRatio: '16 / 9', boxShadow: '0 8px 32px rgba(0,0,0,0.6)' }}
       >
         <img
@@ -162,7 +163,7 @@ const EventsBannerCard = () => (
       </div>
 
       {/* text — right */}
-      <div className="flex flex-col justify-center text-left flex-1">
+      <div className="flex flex-col justify-center text-left flex-1 w-full">
         <p
           style={{
             fontFamily: "'DM Sans', sans-serif",
@@ -178,7 +179,7 @@ const EventsBannerCard = () => (
         <p
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(1.4rem, 3.5vw, 3rem)',
+            fontSize: 'clamp(2.5rem, 3.5vw, 3rem)',
             lineHeight: 1.2,
             color: 'rgba(255,255,255,0.95)',
           }}
@@ -194,7 +195,7 @@ const EventsBannerCard = () => (
         <p
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: 'clamp(0.75rem, 1.5vw, 0.95rem)',
+            fontSize: 'clamp(1.1rem, 1.5vw, 0.95rem)',
             color: 'rgba(255,255,255,0.35)',
             lineHeight: 1.7,
           }}
@@ -268,10 +269,11 @@ function App() {
                     {/* ── Events banner card ── */}
                     <EventsBannerCard />
 
-                    <section id="Events">
+                    <section id="Events" className="mt-32 sm:mt-0">
                       <Events />
                     </section>
 
+        
                     <section id="Timeline">
                       <Timeline />
                     </section>

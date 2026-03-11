@@ -212,7 +212,7 @@ const OrbitalSystem = () => {
                     <h2
                         style={{
                             fontFamily: "'Playfair Display', serif",
-                            fontSize: 'clamp(1.6rem, 3vw, 2.8rem)',
+                            fontSize: 'clamp(2.3rem, 3vw, 2.8rem)',
                             lineHeight: 1.35,
                         }}
                         className="text-white mb-6 lowercase"
@@ -225,7 +225,7 @@ const OrbitalSystem = () => {
 
                     <p
                         style={{ fontFamily: "'DM Sans', sans-serif" }}
-                        className="text-white/40 text-base leading-relaxed font-light mb-8"
+                        className="text-white/40 text-lg leading-relaxed font-light mb-8"
                     >
                         From quantum computing to radio telescopes, sonic levitation to 3D metal printing —
                         Team Abraxas is where engineering physics students turn curiosity into creation.

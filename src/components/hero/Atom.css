@@ -91,3 +91,23 @@
         transform: scale(1.15);
     }
 }
+
+
+
+@media (max-width: 640px) {
+  .frame {
+    width: 55vmin;
+    height: 70vmin;
+  }
+  .orbit {
+    width: 50vmin;
+    height: 50vmin;
+  }
+  .electron {
+    transform: translate(25vmin) rotateY(-70deg);
+  }
+  @keyframes movement {
+    from { transform: rotateZ(0) translateX(25vmin) rotateZ(0) rotateY(-70deg); }
+    to   { transform: rotateZ(360deg) translateX(25vmin) rotateZ(-360deg) rotateY(-70deg); }
+  }
+}

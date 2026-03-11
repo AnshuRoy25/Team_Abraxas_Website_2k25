@@ -23,7 +23,7 @@ const Events = () => {
         >
             <motion.h2
                 style={{ fontFamily: "'Syne', sans-serif" }}
-                className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 md:mb-3 text-center px-4 tracking-tight"
+                className="text-4xl sm:text-3xl md:text-5xl font-bold text-white mb-2 md:mb-3 text-center px-4 tracking-tight"
                 variants={itemVariants}
             >
                 Events & Workshops

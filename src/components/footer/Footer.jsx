@@ -46,10 +46,10 @@ const Footer = () => {
                     <div style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-white/40 text-sm">
                         <strong className="block text-white/60 text-sm mb-1">Dept. of Physics and Photonics Science</strong>
                         <p>NIT Hamirpur — 177005, Hamirpur (H.P.)</p>
-                        <div className="mt-4 w-full">
+                        <div className="mt-4 w-full saturation-0 opacity-40 hover:opacity-60 transition-opacity duration-300">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4711.614329452839!2d76.5232916401509!3d31.707890413851345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904d414dbcbe5a9%3A0xc507ee79945d6bd6!2sPhysics%20Department!5e1!3m2!1sen!2sin!4v1720333486211!5m2!1sen!2sin"
-                                className="w-full h-32 sm:h-40 border border-white/10 rounded-lg"
+                                className="w-full h-32 sm:h-40 border border-white/10 rounded-lg saturation-0"
                                 allowFullScreen=""
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"

@@ -22,14 +22,14 @@ const About = () => {
                     <div className="flex flex-col w-full lg:w-1/2">
                         <h1
                             style={{ fontFamily: "'Syne', sans-serif" }}
-                            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 md:mb-6 tracking-tight"
+                            className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 md:mb-6 tracking-tight"
                         >
                             Who we are
                         </h1>
                         <div className="w-12 h-px bg-white/40 mb-4 sm:mb-6"></div>
                         <p
                             style={{ fontFamily: "'DM Sans', sans-serif" }}
-                            className="text-sm sm:text-base md:text-lg max-w-prose tracking-normal text-white/60 leading-relaxed font-light"
+                            className="text-lg sm:text-base md:text-lg max-w-prose tracking-normal text-white/60 leading-relaxed font-light"
                         >
                             Team Abraxas is the engineering physics branch's departmental club — a vibrant community driven by passion for technology and discovery. We explore diverse physics disciplines from quantum computing to particle physics, creating technological innovations while unraveling universal mysteries. As physics enthusiasts, we've built a space where curiosity thrives and knowledge grows. Through engaging discussions, demonstrations, and groundbreaking discoveries, we're building a legacy that combines scientific exploration with practical innovation.
                         </p>

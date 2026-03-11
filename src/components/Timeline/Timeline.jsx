@@ -13,7 +13,7 @@ const timelineData = [
 
 const Card = ({ item }) => (
   <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-5 hover:bg-white/[0.07] transition-all duration-300 w-full">
-    <div style={{ fontFamily: "'Syne', sans-serif" }} className="text-white/40 text-xs mb-2 tracking-widest uppercase">
+    <div style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-white/40 text-xs mb-2 tracking-widest uppercase">
       {item.month}
     </div>
     {item.day && (
@@ -32,7 +32,6 @@ const Card = ({ item }) => (
   </div>
 );
 
-/* ── Mobile: vertical, card + line only ── */
 const MobileTimeline = () => (
   <div className="relative pl-8">
     <div className="absolute left-0 top-0 bottom-0 w-px bg-white/15" />
@@ -55,14 +54,12 @@ const MobileTimeline = () => (
   </div>
 );
 
-/* ── Desktop: horizontal, cards above/below connected by vertical stems ── */
 const DesktopTimeline = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const STEM = 32; // px height of the vertical stem between card and horizontal line
+  const STEM = 32;
 
   return (
     <div ref={ref} className="relative">
-      {/* Cards above + stems */}
       <div className="flex justify-between gap-4 items-end mb-0">
         {timelineData.map((item, index) => {
           const isTop = index % 2 === 0;
@@ -79,11 +76,9 @@ const DesktopTimeline = () => {
                   >
                     <Card item={item} />
                   </motion.div>
-                  {/* Stem down to line */}
                   <div className="w-px bg-white/20" style={{ height: `${STEM}px` }} />
                 </>
               ) : (
-                /* Spacer same height as card + stem so line stays level */
                 <div style={{ height: `${STEM}px` }} />
               )}
             </div>
@@ -91,7 +86,6 @@ const DesktopTimeline = () => {
         })}
       </div>
 
-      {/* Horizontal line */}
       <motion.div
         className="w-full h-px bg-white/20"
         initial={{ scaleX: 0 }}
@@ -100,7 +94,6 @@ const DesktopTimeline = () => {
         style={{ transformOrigin: 'left' }}
       />
 
-      {/* Stems down + cards below */}
       <div className="flex justify-between gap-4 items-start mt-0">
         {timelineData.map((item, index) => {
           const isBottom = index % 2 !== 0;
@@ -109,7 +102,6 @@ const DesktopTimeline = () => {
             <div key={index} ref={cardRef} className="flex-1 min-w-0 flex flex-col items-center">
               {isBottom ? (
                 <>
-                  {/* Stem up from line */}
                   <div className="w-px bg-white/20" style={{ height: `${STEM}px` }} />
                   <motion.div
                     className="w-full"
@@ -132,31 +124,39 @@ const DesktopTimeline = () => {
 };
 
 const Timeline = () => (
-  <div className="bg-black py-16 px-4 md:px-8 overflow-x-hidden">
-    <motion.h1
+  <div className="bg-black pt-24 pb-16 px-4 md:px-8 overflow-x-hidden">
+    <motion.h2
       style={{ fontFamily: "'Syne', sans-serif" }}
-      className="text-3xl md:text-4xl font-bold text-white mb-3 text-center tracking-widest"
+      className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 md:mb-3 text-center px-4 tracking-tight"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      TIMELINE
-    </motion.h1>
+      Timeline
+    </motion.h2>
     <motion.div
-      className="w-12 h-px bg-white/20 mx-auto mb-16"
+      className="w-12 h-px bg-white/20 mx-auto mb-3"
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.2 }}
     />
+    <motion.p
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="text-center text-white/40 text-base sm:text-lg md:text-xl mb-12 px-4 font-light"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+    >
+      Our journey through the year
+    </motion.p>
 
-    {/* Mobile */}
     <div className="block md:hidden max-w-sm mx-auto">
       <MobileTimeline />
     </div>
 
-    {/* Desktop */}
     <div className="hidden md:block max-w-6xl mx-auto">
       <DesktopTimeline />
     </div>
