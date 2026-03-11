@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import CountUp from "react-countup";
 import RoverCanvas from "./Rover";
@@ -40,7 +40,7 @@ const About = () => {
                     </div>
                 </div>
 
-                {/* Orbital System — placed between rover and stats, same as reference */}
+                {/* Orbital System */}
                 <div className="relative z-5 flex justify-center items-center w-full overflow-hidden">
                     <OrbitalSystem />
                 </div>
@@ -55,9 +55,9 @@ const About = () => {
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden border border-white/10">
                         {[
                             { end: 15, label: "Projects" },
-                            { end: 46, label: "Members" },
-                            { end: 1,  label: "Wins" },
-                            { end: 2,  label: "Events" },
+                            { end: 46, label: "Members"  },
+                            { end: 1,  label: "Wins"     },
+                            { end: 2,  label: "Events"   },
                         ].map((item, i) => (
                             <div
                                 key={i}
@@ -84,4 +84,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default memo(About);

@@ -11,10 +11,10 @@ import About from './components/about/About';
 import Footer from './components/footer/Footer';
 import Events from './components/Events/Events';
 import IntroAnimation from './components/intro/IntroAnimation';
+import GallerySection from './components/Gallery/GallerySection';
 
-// These two are lazy loaded — only download when user visits them
+// Team is lazy loaded — only download when user visits
 const Team = lazy(() => import('./components/team/Team'));
-const Gallery = lazy(() => import('./components/Gallery/Gallery'));
 
 const LoadingScreen = () => (
   <div className="flex items-center justify-center h-screen bg-black">
@@ -32,24 +32,14 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (hash) {
-      // If there's a hash like /#About, scroll to that section smoothly
       const element = document.querySelector(hash);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Scroll window to top (works for home page and Team page)
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-
-      // Also scroll document body directly (fallback)
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
-
-      // Gallery has its own scroll container — target it too
-      const galleryContainer = document.querySelector('.h-screen.overflow-y-auto');
-      if (galleryContainer) {
-        galleryContainer.scrollTop = 0;
-      }
     }
   }, [pathname, hash]);
 
@@ -90,6 +80,9 @@ function App() {
                     <section id="Events">
                       <Events />
                     </section>
+                    <section id="Gallery" className="relative z-10 bg-black">
+                      <GallerySection />
+                    </section>
                     <section id="Timeline">
                       <Timeline />
                     </section>
@@ -102,7 +95,6 @@ function App() {
                   </>
                 } />
                 <Route path="/Team" element={<Team />} />
-                <Route path="/Gallery" element={<Gallery />} />
               </Routes>
             </Suspense>
           </Router>

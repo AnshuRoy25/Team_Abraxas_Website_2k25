@@ -10,19 +10,15 @@ const Navbar = () => {
     const lastScrollTop = useRef(0);
     const location = useLocation();
 
-    // Show navbar after intro animation finishes
     useEffect(() => {
         const timer = setTimeout(() => setShouldShow(true), 2000);
         return () => clearTimeout(timer);
     }, []);
 
-    // Hide on scroll down, show on scroll up
-    // Using a ref for lastScrollTop so handler never gets stale closure value
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // Always show at top
             if (scrollTop <= 10) {
                 setIsVisible(true);
                 lastScrollTop.current = 0;
@@ -30,14 +26,13 @@ const Navbar = () => {
             }
 
             if (scrollTop > lastScrollTop.current + 5) {
-                setIsVisible(false); // scrolling down
+                setIsVisible(false);
             } else if (scrollTop < lastScrollTop.current - 5) {
-                setIsVisible(true); // scrolling up
+                setIsVisible(true);
             }
 
             lastScrollTop.current = scrollTop;
 
-            // Detect active section
             const sections = document.querySelectorAll('section[id]');
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
@@ -49,23 +44,22 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []); // empty deps — ref keeps value fresh
+    }, []);
 
-    // Set active from route
     useEffect(() => {
-        const map = { '/': 'Home', '/Team': 'Team', '/Gallery': 'Gallery' };
+        const map = { '/': 'Home', '/Team': 'Team' };
         if (map[location.pathname]) setActiveSection(map[location.pathname]);
     }, [location.pathname]);
 
     const navigationItems = [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/#About' },
+        { name: 'Home',     path: '/'         },
+        { name: 'About',    path: '/#About'    },
         { name: 'Projects', path: '/#Projects' },
-        { name: 'Events', path: '/#Events' },
-        { name: 'Gallery', path: '/Gallery' },
+        { name: 'Events',   path: '/#Events'   },
+        { name: 'Gallery',  path: '/#Gallery'  },
         { name: 'Timeline', path: '/#Timeline' },
-        { name: 'Team', path: '/Team' },
-        { name: 'Contact', path: '/#Contact' },
+        { name: 'Team',     path: '/Team'      },
+        { name: 'Contact',  path: '/#Contact'  },
     ];
 
     if (!shouldShow) return null;
