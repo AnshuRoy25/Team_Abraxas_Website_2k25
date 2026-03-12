@@ -9,55 +9,81 @@ import Ramjet from '../../assets/images/project/Ramjet';
 import RadioTelescope from '../../assets/images/project/Radiotelescope';
 
 const projectsData = [
+    // 2026 Projects - NEW
     {
-        "photo": <Ionicthruster />,
-        "name": "Ionic Thrusters",
-        "position": "2023 Project",
-        "description": "Ionic thrusters propel spacecraft by accelerating ions using electromagnetic fields. They promise efficient, high-performance propulsion, revolutionizing space exploration with enhanced efficiency and extended capabilities. Ionic thrusters represent a pioneering propulsion technology revolutionizing space exploration. These thrusters utilize electromagnetic fields to accelerate ions, providing spacecraft with propulsion. By expelling ions at high velocities, they generate thrust, enabling efficient and high-performance propulsion systems. Compared to traditional chemical rockets, ionic thrusters offer significant advantages in terms of fuel efficiency and mission duration. Their precise control and long operational lifetimes make them ideal for extended missions to distant destinations within the solar system and beyond. Additionally, ionic thrusters contribute to reducing the overall mass of spacecraft, allowing for larger payloads or smaller, more cost-effective missions. As the demand for exploration beyond Earth's orbit continues to grow, ionic thrusters are poised to play a crucial role in enabling ambitious missions to explore new frontiers and expand humanity's understanding of the universe.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773333776/88be48bf-4b57-4a86-9ffc-8f029dabf580.png",
+        "name": "AURA - Ambient Unobtrusive Radar for Awareness",
+        "position": "2026 Project",
+        "description": "A non-contact, privacy-preserving wireless sensing framework using WiFi Channel State Information (CSI) on commodity hardware. AURA provides a multi-stage pipeline for comprehensive human monitoring, including detecting presence, motion, vital signs, performing localization, reconstructing silhouettes, and inferring emotional states. Using low-cost commodity hardware with modified firmware for fine-grained CSI extraction, it integrates a comprehensive multi-stage pipeline ranging from basic motion detection to complex emotional inference and 3D reconstruction. The system prioritizes privacy through advanced local signal processing and AI-driven edge inference, making it ideal for smart homes, healthcare monitoring, elderly care, and security applications.",
+        "year": "2026"
     },
     {
-        "photo": <Ramjet />,
-        "name": "Ramjet Engine",
-        "position": "2023 Project",
-        "description": "Ramjet engines are air-breathing jet engines for high-speed flight, distinct from traditional ones by lacking compressors. They exploit the aircraft's forward motion to compress incoming air for combustion. The fundamental operation of a ramjet engine hinges upon the principle of air compression facilitated by the vehicle's forward motion. When an aircraft or missile accelerates at high velocities, the ram effect compels air into the engine's inlet. Unlike conventional engines, ramjets forego mechanical compressors, relying solely on the kinetic energy from the vehicle's movement to compress incoming air. This compressed air undergoes mixing with fuel within the engine, subsequently igniting in a combustion chamber. The combustion process yields high-temperature, high-pressure gases, which rapidly expand and exit through the engine's exhaust nozzle, generating forward thrust. Ramjets demonstrate optimal efficiency in supersonic flight regimes, where they proficiently compress air. However, their effectiveness diminishes at lower velocities, necessitating alternative propulsion mechanisms for takeoff and initial acceleration phases.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773333263/612f4f08-2c11-49b1-9e5a-b63835428d7e.png",
+        "name": "PALM-ID - Palm Vein Biometric Authentication",
+        "position": "2026 Project",
+        "description": "A secure, contactless, and highly scalable biometric authentication system using multispectral palm vein recognition. By capturing unique 2D infrared and 3D subdermal patterns, PALM-ID provides a privacy-preserving, spoof-proof alternative to traditional biometrics suitable for nationwide identity and cashless payment frameworks. The system uses a hybrid CNN-Transformer AI model to fuse 2D vein textures with 3D depth topology for superior feature extraction. It achieves nation-scale scalability by combining low-cost edge sensors with centralized GPU servers using FAISS vector indexing to handle millions of user records in real-time, making it ideal for eKYC and digital payment applications.",
+        "year": "2026"
     },
     {
-        "photo": <Cyclorotormodel />,
-        "name": "Cyclorotor",
-        "position": "2023 Project",
-        "description": "A cyclorotor, found in VTOL aircraft, features cycloidal rotors rotating around the fuselage. This design creates swirling airflow akin to cyclones, offering efficient lift and propulsion for improved maneuverability. Cyclorotors represent a distinctive approach to rotor systems in aerospace, featuring cycloidal blades arranged circularly around the aircraft's fuselage. These blades exhibit dual rotation, spinning both around their axis and the central rotor assembly, creating a swirling airflow reminiscent of a cyclone. This unique airflow pattern generates both lift and propulsion. Pilots can finely adjust the pitch and rotational speeds of individual blades, granting precise control over thrust magnitude and direction, facilitating agile maneuverability and stable hovering. Cyclorotors excel in vertical takeoff and landing (VTOL) scenarios, offering efficient lift alongside reduced noise and vibration. Their versatility extends across diverse applications, including unmanned aerial vehicles (UAVs) and urban air mobility vehicles, promising improved performance and control in aerospace operations. The innovative design and operational flexibility of cyclorotors make them a compelling choice for modern aviation challenges.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773333715/893bbaf3-8c00-4479-8af5-3f448aaf3670.png",
+        "name": "Low-Cost Aerosol PM2.5 Sensor",
+        "position": "2026 Project",
+        "description": "A laser-based low-cost, high-accuracy aerosol sensor capable of precise PM2.5 and PM10 detection. The system utilizes multi-wavelength (RGB) and multi-angle laser scattering combined with machine learning calibration to overcome environmental inaccuracies. Unlike standard single-channel sensors, this approach captures comprehensive optical signatures to significantly reduce errors caused by humidity variation and diverse particle compositions. The project is technically and economically feasible, utilizing affordable off-the-shelf components (₹4000/unit) like the ESP32. Scalability is ensured by the IoT-ready architecture, supporting large-scale distributed networks that benefit from centralized cloud-based machine learning calibration updates for continuous accuracy improvement.",
+        "year": "2026"
     },
     {
-        "photo": <LeveragingLight />,
-        "name": "Leveraging Light",
-        "position": "2023 Project",
-        "description": "Our method, merging Michelson interferometer patterns with Newtonian physics, detects tiny masses. Mirror adjustments via a lever reveal mass-induced interference changes. This inventive method repurposes the Michelson interferometer, typically used for measuring small distances, to gauge minute masses. Light divided by a beam splitter generates interference rings upon recombination. Adjusting mirror distances via a lever alters the number of rings, directly affected by particle mass. Lever movement modifies the interferometer's configuration, impacting the interference pattern observed on a screen. By observing these changes and applying the center of gravity concept, the particle's mass can be deduced. This integration of quantum physics and classical mechanics presents a unique perspective, blending principles to unlock novel scientific insights. Such interdisciplinary approaches push the boundaries of conventional methodologies, offering new avenues for exploration at the interface of physics disciplines.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773333639/e07b1ffa-dc80-4cd0-86b8-491c82dc0bcd.png",
+        "name": "SKYTRACKER - Drone-Based Survivor Detection",
+        "position": "2026 Project",
+        "description": "An autonomous, drone-mounted system utilizing Software Defined Radio (SDR) and GPS to detect, locate, and map survivors' GSM mobile devices in real-time during disasters, independent of damaged local network infrastructure. SKYTRACKER uniquely combines drone mobility with onboard signal processing and independent 4G transmission. Unlike solutions requiring visual line-of-sight or functional cell towers, it autonomously locates active GSM devices using signal metadata, providing real-time situational awareness in infrastructure-denied zones. The system is highly scalable, allowing multiple drones to cover large areas while cloud-based MQTT brokers handle thousands of simultaneous device reports, making it feasible for rapid deployment in urban or rural disaster zones.",
+        "year": "2026"
     },
     {
-        "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712836790/Batch2024/Screenshot_from_2024-04-11_17-29-30_w1cths.png",
-        "name": "Quantum Breakout",
-        "position": "2023 Project",
-        "description": "Designed a quantum Breakout game to teach school students Qubit Manipulation using Quantum Gates. It offers an interactive platform for learning complex concepts. We've developed a quantum version of the classic Breakout game tailored for school students to grasp qubit manipulation through various quantum gates. This educational tool merges entertainment with learning, allowing students to interactively explore the intricate world of quantum mechanics. By maneuvering through the game's challenges, players gain practical insights into how quantum gates influence qubit states, paving the way for a deeper understanding of quantum computing principles. The game's intuitive interface and engaging gameplay make it an effective supplement to traditional classroom teachings, offering students a dynamic way to visualize abstract concepts. As they progress through levels, players encounter different quantum gates, each presenting unique challenges and learning opportunities. This innovative approach to education harnesses the power of gamification to make quantum concepts accessible and enjoyable, empowering students to become proficient in quantum computing fundamentals.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773333331/59852984-c1e6-4e2e-9dfd-0dd0d3266a8f.png",
+        "name": "Resolution Enhancement in Thermal Infrared Imaging",
+        "position": "2026 Project",
+        "description": "A deep learning approach to enhance the spatial resolution of low-resolution Thermal Infrared (TIR) satellite imagery by fusing it with high-resolution NIR and optical data. The system generates sharp, detailed temperature maps while strictly maintaining radiometric thermal accuracy for applications like urban heat monitoring and precision agriculture. The innovation lies in a Dual-Stream CNN-UNet that separately encodes thermal context and spatial textures before fusion. Unlike traditional methods prioritizing mere visual sharpness, this approach integrates physical constraints and radiometric loss terms to ensure the enhanced images retain scientifically valid temperature data. The project utilizes free, open-source satellite data (Landsat-8, Sentinel-2) and is designed to adapt to various satellite constellations and thermal drone imagery across diverse geographical regions.",
+        "year": "2026"
+    },
+
+    // 2025 Projects
+    {
+        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090077/WhatsApp_Image_2025-03-27_at_20.03.35_sa9ilq.jpg",
+        "name": "SR Hub",
+        "position": "2025 Project",
+        "description": "This project is an innovative web-based platform that empowers users to define target locations, receive real-time notifications for Landsat satellite passes, and access corresponding Surface Reflectance (SR) data. By enabling seamless comparison between ground-based spectral observations and satellite data, SR Hub promotes advanced environmental analysis and interdisciplinary research.",
+        "year": "2025"
     },
     {
-        "photo": <Quantumwalker />,
-        "name": "Quantum Walker",
-        "position": "2023 Project",
-        "description": "Quantum walker simulations utilize silica gel to mimic quantum behavior. Silica's porous structure mimics quantum states, enabling studies in particle dynamics. Quantum walker simulations leverage silica gel's porous structure to mimic quantum behavior. By embedding quantum particles within the gel, researchers observe their movement through its intricate pathways, akin to quantum states. This setup enables the study of particle dynamics and quantum phenomena in controlled environments. Through precise manipulation of experimental parameters, such as particle interactions and environmental conditions, insights into quantum mechanics and potential applications in quantum computing emerge. Silica gel's versatility allows for the emulation of various quantum systems, offering a platform for investigating complex quantum phenomena and testing theoretical models. Quantum walker simulations using silica gel represent a crucial step towards understanding fundamental quantum principles and developing practical quantum technologies. This innovative approach holds promise for advancing quantum information science and unlocking the full potential of quantum computing in solving real-world problems.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090077/opti-core_mopux2.jpg",
+        "name": "Opti-Core",
+        "position": "2025 Project",
+        "description": "This project will explore the use of optical components such as lasers, mirrors, and photodetectors to create logic gates. The goal is to understand the principles of optical computing and how light can be used to represent binary logic, providing a novel approach to digital circuit design and potentially advancing the field of photonics in computing.",
+        "year": "2025"
     },
     {
-        "photo": <TELESCOPE />,
-        "name": "Telescope",
-        "position": "2023 Project",
-        "description": "Crafted with precision, our Newtonian telescope offers an immersive stargazing experience. With homemade optics and meticulous assembly, it unveils celestial wonders. Our Newtonian telescope is a testament to craftsmanship and passion for astronomy. Built with care and attention to detail, it features handcrafted optics and a meticulously aligned mirror system. The telescope's design, inspired by Sir Isaac Newton's original concept, ensures crisp and clear views of celestial objects. From distant galaxies to the craters of the moon, this telescope reveals the wonders of the night sky with unparalleled clarity. Each component, carefully assembled and calibrated, contributes to the telescope's performance, delivering stunning images of stars, planets, and nebulae. Whether observing the rings of Saturn or the phases of Venus, amateur astronomers can embark on captivating journeys through the cosmos from the comfort of their backyard. With its homemade charm and astronomical capabilities, our Newtonian telescope opens new horizons for stargazers and enthusiasts alike, fostering a deeper appreciation for the universe and the wonders it holds.",
-        "year": "2023"
+        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743086074/WhatsApp_Image_2025-03-27_at_19.59.56_ttjo9h.jpg",
+        "name": "Metal 3-D Printing",
+        "position": "2025 Project",
+        "description": "Expensive, high-strength metallic materials, which can be designed and created with minimal material waste during the layer-upon-layer addition process. The development of new products has already made great use of AM technology for prototyping. Today, components created by AM are used directly in the finished product, and in some instances, AM components are used as spare parts across numerous industries. However, the cost of currently available metal additive manufacturing (AM) machines for metals based on selective laser melting and the cost of part manufacture is very high. Furthermore, the processes used by these technologies produce waste metal powder, creating an adverse effect on the environment. As a result, there is an increasing demand for new techniques with environmental friendliness, high mass production rates, and low production costs. In light of this, extrusion-based metal AM techniques, which utilize the fused filament fabrication (FFF) approach, are a great alternative to the current laser-based metal AM solutions. The extrusion-based metal printing technique uses customized filaments with metal particles distributed in a sacrificial polymeric binder. A FFF printer is utilized to 3D print the green part. The polymeric binder is removed from the printed parts using a catalytic solvent or de-binder (depending on the step). The final metallic parts are obtained after the sintering stage. This article thoroughly discusses all aspects of filament fabrication, AM of green parts, de-binding, sintering, and post-processing of green and sintered parts in extrusion-based metal AM",
+        "year": "2025"
     },
+    {
+        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090196/WhatsApp_Image_2025-03-27_at_20.20.19_xqlvse.jpg",
+        "name": "Anti-Hailstorm Protection System",
+        "position": "2025 Project",
+        "description": "Hailstorms pose a significant threat to apple orchards, leading to severe crop damage and financial losses for farmers. Traditional netting systems offer protection but are cumbersome to manage and come with several limitations, including reduced sunlight exposure and difficulty in applying pesticides. Our solution introduces an automated, cost-effective anti-hailstorm pillar that integrates machine learning (ML) predictions and mechanical net deployment. This system minimizes the duration nets are deployed, ensuring healthy crop growth while preventing hail damage.",
+        "year": "2025"
+    },
+    {
+        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090195/WhatsApp_Image_2025-03-27_at_20.05.00_n7xip0.jpg",
+        "name": "Photoacoustic Imaging System",
+        "position": "2025 Project",
+        "description": "Develop a Photoacoustic Imaging System that uses laser-induced acoustic waves to map underwater objects with the added functionality of modulating the acoustic waves in the 1-50 kHz frequency range. This will enable the capture of specific acoustic signals to generate high-resolution images of underwater features.",
+        "year": "2025"
+    },
+
+    // 2024 Projects
     {
         "photo": <IonicWind />,
         "name": "Ionic Wind",
@@ -107,40 +133,56 @@ const projectsData = [
         "description": "Experience quantum computing through a treasure hunt game featuring Grover's algorithm. An interactive tool that entertains and educates. In our treasure hunt game, players delve into the realm of quantum computing, wielding Grover's algorithm to efficiently search for hidden treasures. Through engaging gameplay, participants witness firsthand the remarkable capabilities of quantum algorithms in solving complex search problems exponentially faster than classical counterparts. As players navigate through the game, they encounter scenarios where quantum principles guide them to success, fostering a deeper understanding of quantum computation. Beyond entertainment, the game serves as an educational tool, bridging the gap between theory and practice by offering tangible experiences with quantum algorithms. By gamifying quantum concepts, we aim to make learning engaging and accessible, inspiring the next generation of innovators to explore the frontiers of quantum computing. Get ready to embark on an adventure where quantum exploration unlocks treasures of knowledge and discovery.",
         "year": "2024"
     },
+
+    // 2023 Projects
     {
-        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090077/WhatsApp_Image_2025-03-27_at_20.03.35_sa9ilq.jpg",
-        "name": "SR Hub",
-        "position": "2025 Project",
-        "description": "This project is an innovative web-based platform that empowers users to define target locations, receive real-time notifications for Landsat satellite passes, and access corresponding Surface Reflectance (SR) data. By enabling seamless comparison between ground-based spectral observations and satellite data, SR Hub promotes advanced environmental analysis and interdisciplinary research.",
-        "year": "2025"
+        "photo": <Ionicthruster />,
+        "name": "Ionic Thrusters",
+        "position": "2023 Project",
+        "description": "Ionic thrusters propel spacecraft by accelerating ions using electromagnetic fields. They promise efficient, high-performance propulsion, revolutionizing space exploration with enhanced efficiency and extended capabilities. Ionic thrusters represent a pioneering propulsion technology revolutionizing space exploration. These thrusters utilize electromagnetic fields to accelerate ions, providing spacecraft with propulsion. By expelling ions at high velocities, they generate thrust, enabling efficient and high-performance propulsion systems. Compared to traditional chemical rockets, ionic thrusters offer significant advantages in terms of fuel efficiency and mission duration. Their precise control and long operational lifetimes make them ideal for extended missions to distant destinations within the solar system and beyond. Additionally, ionic thrusters contribute to reducing the overall mass of spacecraft, allowing for larger payloads or smaller, more cost-effective missions. As the demand for exploration beyond Earth's orbit continues to grow, ionic thrusters are poised to play a crucial role in enabling ambitious missions to explore new frontiers and expand humanity's understanding of the universe.",
+        "year": "2023"
     },
     {
-        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090077/opti-core_mopux2.jpg",
-        "name": "Opti-Core",
-        "position": "2025 Project",
-        "description": "This project will explore the use of optical components such as lasers, mirrors, and photodetectors to create logic gates. The goal is to understand the principles of optical computing and how light can be used to represent binary logic, providing a novel approach to digital circuit design and potentially advancing the field of photonics in computing.",
-        "year": "2025"
+        "photo": <Ramjet />,
+        "name": "Ramjet Engine",
+        "position": "2023 Project",
+        "description": "Ramjet engines are air-breathing jet engines for high-speed flight, distinct from traditional ones by lacking compressors. They exploit the aircraft's forward motion to compress incoming air for combustion. The fundamental operation of a ramjet engine hinges upon the principle of air compression facilitated by the vehicle's forward motion. When an aircraft or missile accelerates at high velocities, the ram effect compels air into the engine's inlet. Unlike conventional engines, ramjets forego mechanical compressors, relying solely on the kinetic energy from the vehicle's movement to compress incoming air. This compressed air undergoes mixing with fuel within the engine, subsequently igniting in a combustion chamber. The combustion process yields high-temperature, high-pressure gases, which rapidly expand and exit through the engine's exhaust nozzle, generating forward thrust. Ramjets demonstrate optimal efficiency in supersonic flight regimes, where they proficiently compress air. However, their effectiveness diminishes at lower velocities, necessitating alternative propulsion mechanisms for takeoff and initial acceleration phases.",
+        "year": "2023"
     },
     {
-        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743086074/WhatsApp_Image_2025-03-27_at_19.59.56_ttjo9h.jpg",
-        "name": "Metal 3-D Printing",
-        "position": "2025 Project",
-        "description": "Expensive, high-strength metallic materials, which can be designed and created with minimal material waste during the layer-upon-layer addition process. The development of new products has already made great use of AM technology for prototyping. Today, components created by AM are used directly in the finished product, and in some instances, AM components are used as spare parts across numerous industries. However, the cost of currently available metal additive manufacturing (AM) machines for metals based on selective laser melting and the cost of part manufacture is very high. Furthermore, the processes used by these technologies produce waste metal powder, creating an adverse effect on the environment. As a result, there is an increasing demand for new techniques with environmental friendliness, high mass production rates, and low production costs. In light of this, extrusion-based metal AM techniques, which utilize the fused filament fabrication (FFF) approach, are a great alternative to the current laser-based metal AM solutions. The extrusion-based metal printing technique uses customized filaments with metal particles distributed in a sacrificial polymeric binder. A FFF printer is utilized to 3D print the green part. The polymeric binder is removed from the printed parts using a catalytic solvent or de-binder (depending on the step). The final metallic parts are obtained after the sintering stage. This article thoroughly discusses all aspects of filament fabrication, AM of green parts, de-binding, sintering, and post-processing of green and sintered parts in extrusion-based metal AM",
-        "year": "2025"
+        "photo": <Cyclorotormodel />,
+        "name": "Cyclorotor",
+        "position": "2023 Project",
+        "description": "A cyclorotor, found in VTOL aircraft, features cycloidal rotors rotating around the fuselage. This design creates swirling airflow akin to cyclones, offering efficient lift and propulsion for improved maneuverability. Cyclorotors represent a distinctive approach to rotor systems in aerospace, featuring cycloidal blades arranged circularly around the aircraft's fuselage. These blades exhibit dual rotation, spinning both around their axis and the central rotor assembly, creating a swirling airflow reminiscent of a cyclone. This unique airflow pattern generates both lift and propulsion. Pilots can finely adjust the pitch and rotational speeds of individual blades, granting precise control over thrust magnitude and direction, facilitating agile maneuverability and stable hovering. Cyclorotors excel in vertical takeoff and landing (VTOL) scenarios, offering efficient lift alongside reduced noise and vibration. Their versatility extends across diverse applications, including unmanned aerial vehicles (UAVs) and urban air mobility vehicles, promising improved performance and control in aerospace operations. The innovative design and operational flexibility of cyclorotors make them a compelling choice for modern aviation challenges.",
+        "year": "2023"
     },
     {
-        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090196/WhatsApp_Image_2025-03-27_at_20.20.19_xqlvse.jpg",
-        "name": "Anti-Hailstorm Protection System",
-        "position": "2025 Project",
-        "description": "Hailstorms pose a significant threat to apple orchards, leading to severe crop damage and financial losses for farmers. Traditional netting systems offer protection but are cumbersome to manage and come with several limitations, including reduced sunlight exposure and difficulty in applying pesticides. Our solution introduces an automated, cost-effective anti-hailstorm pillar that integrates machine learning (ML) predictions and mechanical net deployment. This system minimizes the duration nets are deployed, ensuring healthy crop growth while preventing hail damage.",
-        "year": "2025"
+        "photo": <LeveragingLight />,
+        "name": "Leveraging Light",
+        "position": "2023 Project",
+        "description": "Our method, merging Michelson interferometer patterns with Newtonian physics, detects tiny masses. Mirror adjustments via a lever reveal mass-induced interference changes. This inventive method repurposes the Michelson interferometer, typically used for measuring small distances, to gauge minute masses. Light divided by a beam splitter generates interference rings upon recombination. Adjusting mirror distances via a lever alters the number of rings, directly affected by particle mass. Lever movement modifies the interferometer's configuration, impacting the interference pattern observed on a screen. By observing these changes and applying the center of gravity concept, the particle's mass can be deduced. This integration of quantum physics and classical mechanics presents a unique perspective, blending principles to unlock novel scientific insights. Such interdisciplinary approaches push the boundaries of conventional methodologies, offering new avenues for exploration at the interface of physics disciplines.",
+        "year": "2023"
     },
     {
-        "photo": "https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743090195/WhatsApp_Image_2025-03-27_at_20.05.00_n7xip0.jpg",
-        "name": "Photoacoustic Imaging System",
-        "position": "2025 Project",
-        "description": "Develop a Photoacoustic Imaging System that uses laser-induced acoustic waves to map underwater objects with the added functionality of modulating the acoustic waves in the 1-50 kHz frequency range. This will enable the capture of specific acoustic signals to generate high-resolution images of underwater features.",
-        "year": "2025"
+        "photo": "https://res.cloudinary.com/dyq1mioyr/image/upload/v1712836790/Batch2024/Screenshot_from_2024-04-11_17-29-30_w1cths.png",
+        "name": "Quantum Breakout",
+        "position": "2023 Project",
+        "description": "Designed a quantum Breakout game to teach school students Qubit Manipulation using Quantum Gates. It offers an interactive platform for learning complex concepts. We've developed a quantum version of the classic Breakout game tailored for school students to grasp qubit manipulation through various quantum gates. This educational tool merges entertainment with learning, allowing students to interactively explore the intricate world of quantum mechanics. By maneuvering through the game's challenges, players gain practical insights into how quantum gates influence qubit states, paving the way for a deeper understanding of quantum computing principles. The game's intuitive interface and engaging gameplay make it an effective supplement to traditional classroom teachings, offering students a dynamic way to visualize abstract concepts. As they progress through levels, players encounter different quantum gates, each presenting unique challenges and learning opportunities. This innovative approach to education harnesses the power of gamification to make quantum concepts accessible and enjoyable, empowering students to become proficient in quantum computing fundamentals.",
+        "year": "2023"
+    },
+    {
+        "photo": <Quantumwalker />,
+        "name": "Quantum Walker",
+        "position": "2023 Project",
+        "description": "Quantum walker simulations utilize silica gel to mimic quantum behavior. Silica's porous structure mimics quantum states, enabling studies in particle dynamics. Quantum walker simulations leverage silica gel's porous structure to mimic quantum behavior. By embedding quantum particles within the gel, researchers observe their movement through its intricate pathways, akin to quantum states. This setup enables the study of particle dynamics and quantum phenomena in controlled environments. Through precise manipulation of experimental parameters, such as particle interactions and environmental conditions, insights into quantum mechanics and potential applications in quantum computing emerge. Silica gel's versatility allows for the emulation of various quantum systems, offering a platform for investigating complex quantum phenomena and testing theoretical models. Quantum walker simulations using silica gel represent a crucial step towards understanding fundamental quantum principles and developing practical quantum technologies. This innovative approach holds promise for advancing quantum information science and unlocking the full potential of quantum computing in solving real-world problems.",
+        "year": "2023"
+    },
+    {
+        "photo": <TELESCOPE />,
+        "name": "Telescope",
+        "position": "2023 Project",
+        "description": "Crafted with precision, our Newtonian telescope offers an immersive stargazing experience. With homemade optics and meticulous assembly, it unveils celestial wonders. Our Newtonian telescope is a testament to craftsmanship and passion for astronomy. Built with care and attention to detail, it features handcrafted optics and a meticulously aligned mirror system. The telescope's design, inspired by Sir Isaac Newton's original concept, ensures crisp and clear views of celestial objects. From distant galaxies to the craters of the moon, this telescope reveals the wonders of the night sky with unparalleled clarity. Each component, carefully assembled and calibrated, contributes to the telescope's performance, delivering stunning images of stars, planets, and nebulae. Whether observing the rings of Saturn or the phases of Venus, amateur astronomers can embark on captivating journeys through the cosmos from the comfort of their backyard. With its homemade charm and astronomical capabilities, our Newtonian telescope opens new horizons for stargazers and enthusiasts alike, fostering a deeper appreciation for the universe and the wonders it holds.",
+        "year": "2023"
     }
 ]
 

@@ -70,6 +70,33 @@
                     "linkedin": "https://www.linkedin.com/in/deepika-chauhan-9243bb384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                     "instagram": ""
                 }
+            },
+            {
+                "photo": "https://drive.google.com/open?id=1FyzYKOEhL3FS60wfw1-0Uigy0aJveVbQ",
+                "name": "Anushka",
+                "social": {
+                    "github": "",
+                    "linkedin": "https://www.linkedin.com/in/anushka-saini-886561390?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    "instagram": ""
+                }
+            },
+            {
+                "photo": "https://drive.google.com/open?id=19HBnogkcAX7_sJJFUU3nYPhPthmys2dc",
+                "name": "Anshul",
+                "social": {
+                    "github": "",
+                    "linkedin": "",
+                    "instagram": "https://www.instagram.com/anshul_un3?igsh=MTJua2FzOHhzeWF0bA=="
+                }
+            },
+            {
+                "photo": "https://drive.google.com/open?id=17f6eeZAOei_Js-LBWigoBFwujUr_With",
+                "name": "Tulimita Bhadra",
+                "social": {
+                    "github": "https://github.com/tulimita",
+                    "linkedin": "https://www.linkedin.com/in/eepeep/",
+                    "instagram": "https://www.instagram.com/sugarry_escape/"
+                }
             }
     ],
     "Executives": [
@@ -165,15 +192,6 @@
             }
         },
         {
-            "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800307/24BPH013_-_AYUSH_KUMAR_PRAJAPATI_jwgomn.jpg",
-            "name": "Ayush Prajapati",
-            "social": {
-                "github": "",
-                "linkedin": "https://www.linkedin.com/in/ayush-prajapati-63a993314",
-                "instagram": "https://www.instagram.com/ayush_prajapati_7242"
-            }
-        },
-        {
             "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800315/24BPH019_-_HARSH_K_jzvxzx.jpg",
             "name": "Harsh",
             "social": {
@@ -239,15 +257,7 @@
                     "instagram": ""
                 }
             },
-            {
-                "photo": "https://res.cloudinary.com/djqmxt5rg/image/upload/v1772961753/file_00000000a9fc71fab768dd6d4a7593b3_-_Saurav_Sharma_b5d01w.png",
-                "name": "Saurav Sharma",
-                "social": {
-                    "github": "",
-                    "linkedin": "https://www.linkedin.com/in/saurav-sharma-b55870325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-                    "instagram": "https://www.instagram.com/aaryavartian"
-                }
-            },
+    
             {
                 "photo": "https://res.cloudinary.com/dwgblczck/image/upload/v1737800317/Shweta_-_SHWETA_SHARMA_qvotxb.jpg",
                 "name": "Shweta Sharma",

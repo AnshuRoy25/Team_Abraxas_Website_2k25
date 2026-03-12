@@ -4,7 +4,7 @@ import ProjectCard from './ProjectCard';
 import projectsData from './Projectslist';
 
 const Projects = () => {
-    const [selectedYear, setSelectedYear] = useState('2025');
+    const [selectedYear, setSelectedYear] = useState('2026');
     const [activeIndex, setActiveIndex] = useState(0);
 
     const groupedData = projectsData.reduce((acc, project) => {

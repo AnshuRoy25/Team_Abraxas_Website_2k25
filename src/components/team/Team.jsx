@@ -26,58 +26,95 @@ const Team = () => {
 
     const renderTeamSection = (year) => {
         if (!teamData[year]) return null;
+        const memberCount = teamData[year].length;
+        
+        // Determine if we should center (3 or fewer cards on desktop)
+        const shouldCenter = memberCount <= 3 && windowWidth >= 1024;
+        
         return (
-            <section id={year} className="w-full max-w-7xl mx-auto mb-6 scroll-mt-20">
+            <section id={year} className="w-full max-w-7xl mx-auto mb-8 scroll-mt-20">
                 <h2 style={{ fontFamily: "'Syne', sans-serif" }} className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-2 text-center px-4 tracking-wide">
                     {year.replace(/-/g, ' ')}
                 </h2>
-                <div className="w-8 h-px bg-white/20 mx-auto mb-3"></div>
+                <div className="w-8 h-px bg-white/20 mx-auto mb-4"></div>
+                
                 <InView threshold={0.1} onChange={(inView) => inView && controls.start("visible")}>
-                    <div className="relative px-4 sm:px-6">
-                        <div className="overflow-x-auto hide-scrollbar">
-                            <motion.div
-                                initial="hidden"
-                                animate={controls}
-                                variants={variants}
-                                style={{
-                                    display: 'flex',
-                                    gap: '12px',
-                                    width: 'fit-content',
-                                    minWidth: '100%',
-                                    justifyContent: windowWidth < 1024 ? 'flex-start' : 'center',
-                                    padding: '0.5rem',
-                                }}
-                            >
-                                {teamData[year].map((member, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className="flex-shrink-0 hover:scale-105 transition-transform duration-300"
-                                        variants={variants}
-                                    >
-                                        <TeamCard photo={member.photo} name={member.name} social={member.social} />
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </div>
+                    {/* Scrollable container */}
+                    <div 
+                        className="overflow-x-scroll px-4 sm:px-6"
+                        style={{
+                            scrollbarWidth: 'none',
+                            msOverflowStyle: 'none',
+                            WebkitOverflowScrolling: 'touch',
+                            userSelect: 'none',
+                            WebkitUserSelect: 'none',
+                            MozUserSelect: 'none',
+                            msUserSelect: 'none'
+                        }}
+                        onMouseDown={(e) => {
+                            e.preventDefault(); // Prevent text selection
+                            const ele = e.currentTarget;
+                            const startX = e.pageX - ele.offsetLeft;
+                            const scrollLeft = ele.scrollLeft;
+                            let isDragging = false;
+                            
+                            const handleMouseMove = (e) => {
+                                isDragging = true;
+                                const x = e.pageX - ele.offsetLeft;
+                                const walk = (x - startX) * 2;
+                                ele.scrollLeft = scrollLeft - walk;
+                            };
+                            
+                            const handleMouseUp = () => {
+                                document.removeEventListener('mousemove', handleMouseMove);
+                                document.removeEventListener('mouseup', handleMouseUp);
+                            };
+                            
+                            document.addEventListener('mousemove', handleMouseMove);
+                            document.addEventListener('mouseup', handleMouseUp);
+                        }}
+                    >
+                        <motion.div
+                            initial="hidden"
+                            animate={controls}
+                            variants={variants}
+                            className="flex gap-3 pb-2"
+                            style={{
+                                width: shouldCenter ? '100%' : `${memberCount * 340}px`,
+                                minWidth: shouldCenter ? 'auto' : '100%',
+                                justifyContent: shouldCenter ? 'center' : 'flex-start'
+                            }}
+                        >
+                            {teamData[year].map((member, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="flex-shrink-0"
+                                    variants={variants}
+                                    style={{ 
+                                        width: '320px',
+                                        pointerEvents: 'auto' // Allow card interactions
+                                    }}
+                                >
+                                    <TeamCard photo={member.photo} name={member.name} social={member.social} />
+                                </motion.div>
+                            ))}
+                        </motion.div>
                     </div>
                 </InView>
             </section>
         );
     };
 
-    useEffect(() => {
-        const style = document.createElement('style');
-        style.textContent = `
-            .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .hide-scrollbar::-webkit-scrollbar { display: none; }
-        `;
-        document.head.appendChild(style);
-        return () => document.head.removeChild(style);
-    }, []);
-
     const NavButtons = () => (
         <div className="fixed bottom-3 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-4xl px-4 lg:hidden">
-            <div className="bg-black/90 backdrop-blur-sm border border-white/10 rounded-xl p-2 overflow-x-auto hide-scrollbar touch-pan-x">
+            <div 
+                className="bg-black/90 backdrop-blur-sm border border-white/10 rounded-xl p-2 overflow-x-auto"
+                style={{
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                    WebkitOverflowScrolling: 'touch'
+                }}
+            >
                 <div className="flex flex-row space-x-1 w-max">
                     {["Club-Coordinators", "Our Alumni", "Final-Year", "Coordinators", "Executives", "Volunteers"].map((year) => (
                         <button
@@ -110,7 +147,7 @@ const Team = () => {
                     Our Team
                 </h1>
                 <div className="w-12 h-px bg-white/20 mx-auto mb-5"></div>
-                <div className="space-y-4 mx-4">
+                <div className="space-y-6">
                     {renderTeamSection('Club-Coordinators')}
                     {renderTeamSection('Our Alumni')}
                     {renderTeamSection('Final-Year')}
@@ -119,6 +156,12 @@ const Team = () => {
                     {renderTeamSection('Volunteers')}
                 </div>
             </div>
+
+            <style jsx>{`
+                .overflow-x-scroll::-webkit-scrollbar {
+                    display: none;
+                }
+            `}</style>
         </main>
     );
 };
