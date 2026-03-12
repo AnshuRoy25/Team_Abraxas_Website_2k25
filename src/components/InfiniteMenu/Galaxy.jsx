@@ -84,7 +84,7 @@ float Star(vec2 uv, float flare) {
 vec3 StarLayer(vec2 uv) {
   vec3 col = vec3(0.0);
 
-  vec2 gv = fract(uv) - 0.5; 
+  vec2 gv = fract(uv) - 0.5;
   vec2 id = floor(uv);
 
   for (int y = -1; y <= 1; y++) {
@@ -100,7 +100,7 @@ vec3 StarLayer(vec2 uv) {
       float blu = smoothstep(STAR_COLOR_CUTOFF, 1.0, Hash21(si + 3.0)) + STAR_COLOR_CUTOFF;
       float grn = min(red, blu) * seed;
       vec3 base = vec3(red, grn, blu);
-      
+
       float hue = atan(base.g - base.r, base.b - base.r) / (2.0 * 3.14159) + 0.5;
       hue = fract(hue + uHueShift / 360.0);
       float sat = length(base - vec3(dot(base, vec3(0.299, 0.587, 0.114)))) * uSaturation;
@@ -115,7 +115,7 @@ vec3 StarLayer(vec2 uv) {
       float twinkle = trisn(uTime * uSpeed + seed * 6.2831) * 0.5 + 1.0;
       twinkle = mix(1.0, twinkle, uTwinkleIntensity);
       star *= twinkle;
-      
+
       col += star * size * color;
     }
   }
@@ -128,7 +128,7 @@ void main() {
   vec2 uv = (vUv * uResolution.xy - focalPx) / uResolution.y;
 
   vec2 mouseNorm = uMouse - vec2(0.5);
-  
+
   if (uAutoCenterRepulsion > 0.0) {
     vec2 centerUV = vec2(0.0, 0.0);
     float centerDist = length(uv - centerUV);
@@ -194,13 +194,21 @@ export default function Galaxy({
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 });
   const targetMouseActive = useRef(0.0);
   const smoothMouseActive = useRef(0.0);
+  // Performance refs
+  const isVisible = useRef(false);
+  const animateId = useRef(null);
+  const lastMouseTime = useRef(0);
 
   useEffect(() => {
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
+
+    // ── PERFORMANCE: cap DPR at 1.5 to halve GPU pixels on retina screens ──
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
     const renderer = new Renderer({
       alpha: transparent,
-      premultipliedAlpha: false
+      premultipliedAlpha: false,
     });
     const gl = renderer.gl;
 
@@ -215,8 +223,7 @@ export default function Galaxy({
     let program;
 
     function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+      renderer.setSize(ctn.offsetWidth * dpr, ctn.offsetHeight * dpr);
       if (program) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
@@ -259,10 +266,14 @@ export default function Galaxy({
     });
 
     const mesh = new Mesh(gl, { geometry, program });
-    let animateId;
+    ctn.appendChild(gl.canvas);
 
     function update(t) {
-      animateId = requestAnimationFrame(update);
+      animateId.current = requestAnimationFrame(update);
+
+      // ── PERFORMANCE: skip rendering entirely when scrolled out of view ──
+      if (!isVisible.current) return;
+
       if (!disableAnimation) {
         program.uniforms.uTime.value = t * 0.001;
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
@@ -279,10 +290,13 @@ export default function Galaxy({
 
       renderer.render({ scene: mesh });
     }
-    animateId = requestAnimationFrame(update);
-    ctn.appendChild(gl.canvas);
+    animateId.current = requestAnimationFrame(update);
 
+    // ── PERFORMANCE: throttle mouse events to ~30fps ──
     function handleMouseMove(e) {
+      const now = performance.now();
+      if (now - lastMouseTime.current < 32) return;
+      lastMouseTime.current = now;
       const rect = ctn.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
@@ -295,18 +309,26 @@ export default function Galaxy({
     }
 
     if (mouseInteraction) {
-      ctn.addEventListener('mousemove', handleMouseMove);
-      ctn.addEventListener('mouseleave', handleMouseLeave);
+      ctn.addEventListener('mousemove', handleMouseMove, { passive: true });
+      ctn.addEventListener('mouseleave', handleMouseLeave, { passive: true });
     }
 
+    // ── PERFORMANCE: pause rAF loop when element is off-screen ──
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisible.current = entry.isIntersecting; },
+      { threshold: 0.01 }
+    );
+    observer.observe(ctn);
+
     return () => {
-      cancelAnimationFrame(animateId);
+      if (animateId.current) cancelAnimationFrame(animateId.current);
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       if (mouseInteraction) {
         ctn.removeEventListener('mousemove', handleMouseMove);
         ctn.removeEventListener('mouseleave', handleMouseLeave);
       }
-      ctn.removeChild(gl.canvas);
+      if (ctn.contains(gl.canvas)) ctn.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [

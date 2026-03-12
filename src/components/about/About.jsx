@@ -1,13 +1,15 @@
 import React, { memo } from "react";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import RoverCanvas from "./Rover";
+import { useInView } from "react-intersection-observer";
 import OrbitalSystem from "./OrbitalSystem";
 
+// Lazy load the heavy Three.js canvas
+import { lazy, Suspense } from "react";
+const RoverCanvas = lazy(() => import("./Rover"));
+
 const About = () => {
-    const { scrollY } = useViewportScroll();
-    const textX = useTransform(scrollY, [0, 700], [-500, 0]);
-    const textXOut = useTransform(scrollY, [300, 1000], [0, 500]);
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     return (
         <div className="min-h-screen relative flex flex-col justify-start items-center bg-black text-white py-8 sm:py-12 md:py-16 lg:py-24">
@@ -35,8 +37,17 @@ const About = () => {
                         </p>
                     </div>
 
-                    <div className="w-full lg:w-1/2 h-64 sm:h-72 md:h-80 lg:h-96">
-                        <RoverCanvas />
+                    {/* Rover — only rendered once visible, with fallback */}
+                    <div className="w-full lg:w-1/2 h-64 sm:h-72 md:h-80 lg:h-96" ref={ref}>
+                        {inView && (
+                            <Suspense fallback={
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <p style={{ fontFamily: "'DM Sans', sans-serif" }} className="text-white/20 text-sm animate-pulse">Loading...</p>
+                                </div>
+                            }>
+                                <RoverCanvas />
+                            </Suspense>
+                        )}
                     </div>
                 </div>
 
@@ -55,9 +66,9 @@ const About = () => {
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden border border-white/10">
                         {[
                             { end: 15, label: "Projects" },
-                            { end: 46, label: "Members"  },
-                            { end: 1,  label: "Wins"     },
-                            { end: 2,  label: "Events"   },
+                            { end: 46, label: "Members" },
+                            { end: 1,  label: "Wins" },
+                            { end: 2,  label: "Events" },
                         ].map((item, i) => (
                             <div
                                 key={i}
