@@ -123,7 +123,6 @@ const GallerySection = () => {
     const [selectedYear, setSelectedYear] = useState('2025');
     const [lightboxIndex, setLightboxIndex] = useState(null);
     const scrollRef = useRef(null);
-    const [sectionRef, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     const images = galleryData[selectedYear] || [];
 
@@ -148,19 +147,14 @@ const GallerySection = () => {
         if (scrollRef.current) scrollRef.current.scrollLeft = 0;
     }, [selectedYear]);
 
-    // ── The key fix: scroll the ref directly ──
     const handleScrollLeft = () => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: -600, behavior: 'smooth' });
-        }
+        if (scrollRef.current) scrollRef.current.scrollBy({ left: -600, behavior: 'smooth' });
     };
     const handleScrollRight = () => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: 600, behavior: 'smooth' });
-        }
+        if (scrollRef.current) scrollRef.current.scrollBy({ left: 600, behavior: 'smooth' });
     };
 
-    // Mouse drag to scroll (desktop)
+    // Mouse drag to scroll
     const isDragging = useRef(false);
     const dragStartX = useRef(0);
     const dragScrollLeft = useRef(0);
@@ -182,23 +176,26 @@ const GallerySection = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-black py-16">
+        <div className="bg-black py-16">
             <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                {/* Header */}
+                {/* Header — fixed with whileInView */}
                 <motion.h2
                     style={{ fontFamily: "'Syne', sans-serif" }}
                     className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 text-center tracking-tight"
                     initial={{ opacity: 0, y: 40 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6 }}
                 >
                     Gallery
                 </motion.h2>
 
-                <motion.div className="w-12 h-px bg-white/20 mx-auto mb-3"
+                <motion.div
+                    className="w-12 h-px bg-white/20 mx-auto mb-3"
                     initial={{ scaleX: 0 }}
-                    animate={inView ? { scaleX: 1 } : {}}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 />
 
@@ -206,16 +203,19 @@ const GallerySection = () => {
                     style={{ fontFamily: "'DM Sans', sans-serif" }}
                     className="text-center text-white/40 text-base sm:text-lg mb-8 font-light"
                     initial={{ opacity: 0 }}
-                    animate={inView ? { opacity: 1 } : {}}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                 >
                     Moments from our journey
                 </motion.p>
 
                 {/* Year Tabs */}
-                <motion.div className="flex justify-center gap-3 mb-10"
+                <motion.div
+                    className="flex justify-center gap-3 mb-10"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.5, delay: 0.35 }}
                 >
                     {Object.keys(galleryData).map((year) => (
@@ -232,7 +232,7 @@ const GallerySection = () => {
                     ))}
                 </motion.div>
 
-                {/* Scroll strip with buttons OUTSIDE the overflow container */}
+                {/* Scroll strip */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedYear}
@@ -249,7 +249,6 @@ const GallerySection = () => {
                             </div>
                         ) : (
                             <>
-                                {/* The scroll container — no overflow clipping on parent */}
                                 <div
                                     ref={scrollRef}
                                     className="flex gap-4 pb-4"
@@ -277,7 +276,7 @@ const GallerySection = () => {
                                     ))}
                                 </div>
 
-                                {/* Buttons BELOW the strip, right-aligned — always visible, no overlap */}
+                                {/* Scroll buttons */}
                                 <div className="flex justify-end gap-3 mt-4">
                                     <button
                                         onClick={handleScrollLeft}

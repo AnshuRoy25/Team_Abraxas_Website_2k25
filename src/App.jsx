@@ -11,6 +11,8 @@ import About from './components/about/About';
 import Footer from './components/footer/Footer';
 import Events from './components/Events/Events';
 import IntroAnimation from './components/intro/IntroAnimation';
+import GallerySection from './components/Gallery/GallerySection';
+import GlobeGallery from './components/InfiniteMenu/GlobeGallery';
 
 const Team = lazy(() => import('./components/team/Team'));
 const Gallery = lazy(() => import('./components/Gallery/Gallery'));
@@ -266,6 +268,10 @@ function App() {
                       <Projects />
                     </section>
 
+                    <section id="GlobeGallery">
+                      <GlobeGallery />
+                    </section>
+
                     {/* ── Events banner card ── */}
                     <EventsBannerCard />
 
@@ -273,13 +279,20 @@ function App() {
                       <Events />
                     </section>
 
+                    <section id="Gallery">
+                      <GallerySection />
+                    </section>
+
         
-                    <section id="Timeline">
+                    <section id="Timeline" className="mt-16 sm:mt-24">
                       <Timeline />
                     </section>
                     <section id="Contact">
                       <Contact />
                     </section>
+
+                  
+                    
                     <section id="Footer">
                       <Footer />
                     </section>

@@ -44,14 +44,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Events — let it size naturally, no fixed height */
 #Events {
-  height: 90vh;
-}
-
-@media (max-width: 768px) {
-  #Events {
-    height: 120vh;
-  }
+  height: auto;
+  min-height: unset;
 }
 
 /* Projects — no overflow, no height, nothing that breaks sticky */
