@@ -69,23 +69,18 @@ void main() {
     vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
     vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
 
-    ivec2 texSize = textureSize(uTex, 0);
-    float imageAspect = float(texSize.x) / float(texSize.y);
-    float containerAspect = 1.0;
-    
-    float scale = max(imageAspect / containerAspect, 
-                     containerAspect / imageAspect);
-    
+    // Each cell in the atlas is square (cellSize x cellSize in UV space).
+    // We want a "cover" crop — fill the disc without distorting.
+    // The disc UVs go 0..1 in both axes (circle mapped to square).
+    // Since the atlas cell is always square we just sample directly — no scale needed.
     vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
-    st = (st - 0.5) * scale + 0.5;
-    
-    st = clamp(st, 0.0, 1.0);
-    
+
+    // map into the atlas cell
     st = st * cellSize + cellOffset;
-    
+
     outColor = texture(uTex, st);
 
-    // Center disc (highest vAlpha ~1.0) stays colorful, all others go grayscale
+    // Center disc (highest vAlpha ~1.0) stays colorful, others go grayscale
     float gray = dot(outColor.rgb, vec3(0.299, 0.587, 0.114));
     float colorFactor = smoothstep(0.7, 1.0, vAlpha);
     outColor.rgb = mix(vec3(gray), outColor.rgb, colorFactor);
@@ -574,10 +569,10 @@ class InfiniteGridMenu {
 
     const itemCount = Math.max(1, this.items.length);
     this.atlasSize = Math.ceil(Math.sqrt(itemCount));
+    const cellSize = 512;  // each cell is square — images are center-cropped into this
+
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    const cellSize = 512;
-
     canvas.width = this.atlasSize * cellSize;
     canvas.height = this.atlasSize * cellSize;
 
@@ -588,6 +583,7 @@ class InfiniteGridMenu {
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.onload = () => resolve(img);
+            img.onerror = () => resolve(img); // resolve even on error
             img.src = item.image;
           })
       )
@@ -595,8 +591,24 @@ class InfiniteGridMenu {
       images.forEach((img, i) => {
         const x = (i % this.atlasSize) * cellSize;
         const y = Math.floor(i / this.atlasSize) * cellSize;
-        ctx.drawImage(img, x, y, cellSize, cellSize);
+
+        // ── CENTER-CROP (cover) so images are never squashed ──
+        const iw = img.naturalWidth  || img.width  || cellSize;
+        const ih = img.naturalHeight || img.height || cellSize;
+        const scale = Math.max(cellSize / iw, cellSize / ih);
+        const sw = iw * scale;
+        const sh = ih * scale;
+        const sx = (cellSize - sw) / 2;
+        const sy = (cellSize - sh) / 2;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(x, y, cellSize, cellSize);
+        ctx.clip();
+        ctx.drawImage(img, x + sx, y + sy, sw, sh);
+        ctx.restore();
       });
+
       gl.bindTexture(gl.TEXTURE_2D, this.tex);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
       gl.generateMipmap(gl.TEXTURE_2D);
@@ -801,7 +813,6 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
         <>
           <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>{activeItem.title}</h2>
           <p className={`face-description ${isMoving ? 'inactive' : 'active'}`}>{activeItem.description}</p>
-        
         </>
       )}
     </div>

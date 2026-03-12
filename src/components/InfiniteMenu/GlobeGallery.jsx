@@ -4,6 +4,7 @@ import InfiniteMenu from './InfiniteMenu';
 import Galaxy from './Galaxy';
 
 const items = [
+  // 2025
   {
     image: 'https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082714/WhatsApp_Image_2025-03-27_at_19.04.38_1_plfgii.jpg',
     link: '/Gallery',
@@ -23,6 +24,37 @@ const items = [
     description: 'Built by curious minds'
   },
   {
+    image: 'https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082718/WhatsApp_Image_2025-03-27_at_19.04.33_v61wkt.jpg',
+    link: '/Gallery',
+    title: '2025',
+    description: 'Physics in practice'
+  },
+  {
+    image: 'https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082718/WhatsApp_Image_2025-03-27_at_19.04.32_2_syh2b7.jpg',
+    link: '/Gallery',
+    title: '2025',
+    description: 'Exploring boundaries'
+  },
+  {
+    image: 'https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082715/WhatsApp_Image_2025-03-27_at_19.04.35_1_ktbqqe.jpg',
+    link: '/Gallery',
+    title: '2025',
+    description: 'Together we build'
+  },
+  {
+    image: 'https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082716/WhatsApp_Image_2025-03-27_at_19.04.37_mg9xlk.jpg',
+    link: '/Gallery',
+    title: '2025',
+    description: 'Innovision 2025'
+  },
+  {
+    image: 'https://res.cloudinary.com/dlw2rmxyi/image/upload/v1743082716/WhatsApp_Image_2025-03-27_at_19.04.34_2_bdccj0.jpg',
+    link: '/Gallery',
+    title: '2025',
+    description: 'Experiments & ideas'
+  },
+  // 2024
+  {
     image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712791111/ABRAXAS-Gallery24/ooc5jgmm8myaieky4pbt.jpg',
     link: '/Gallery',
     title: '2024',
@@ -41,6 +73,25 @@ const items = [
     description: 'Physics in practice'
   },
   {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712791253/ABRAXAS-Gallery24/ndakojgncvvfzoxxvkgi.jpg',
+    link: '/Gallery',
+    title: '2024',
+    description: 'Team at work'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712791133/ABRAXAS-Gallery24/bbziza0ffuqnqhrg3re5.jpg',
+    link: '/Gallery',
+    title: '2024',
+    description: 'Curious minds'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712791241/ABRAXAS-Gallery24/hpopde3httnqpyvnwn2o.jpg',
+    link: '/Gallery',
+    title: '2024',
+    description: 'Building the future'
+  },
+  // 2023
+  {
     image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786020/ABRAXAS-Gallery/p4bfierd3hosdoawdzsy.jpg',
     link: '/Gallery',
     title: '2023',
@@ -51,6 +102,30 @@ const items = [
     link: '/Gallery',
     title: '2023',
     description: 'First chapter'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786102/ABRAXAS-Gallery/isrmwvh6wrzphavwqwz0.jpg',
+    link: '/Gallery',
+    title: '2023',
+    description: 'The beginning'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786158/ABRAXAS-Gallery/wwfnjka7a7f79sms8k3h.jpg',
+    link: '/Gallery',
+    title: '2023',
+    description: 'Early days'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786128/ABRAXAS-Gallery/c8bzhu4vs5q7pac4lhg7.jpg',
+    link: '/Gallery',
+    title: '2023',
+    description: 'Laying foundations'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyq1mioyr/image/upload/v1712786235/ABRAXAS-Gallery/rg85siezkcvt2bqp0wvz.jpg',
+    link: '/Gallery',
+    title: '2023',
+    description: 'Together from the start'
   },
 ];
 
@@ -66,7 +141,7 @@ const GlobeGallery = () => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
       >
-        Our Moments
+        Our Universe's
       </motion.h2>
 
       <motion.div
@@ -88,45 +163,66 @@ const GlobeGallery = () => {
         Drag to explore our journey
       </motion.p>
 
-      {/* Globe */}
+      {/* Wrapper — position:relative so the button can anchor to it */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, delay: 0.4 }}
         style={{
-          height: '600px',
           position: 'relative',
-          overflow: 'hidden',
-          borderRadius: '24px',
           maxWidth: '1200px',
           margin: '0 auto',
-          border: '1px solid rgba(255, 255, 255, 0.07)',
         }}
       >
-        {/* Galaxy background layer */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <Galaxy
-            mouseRepulsion
-            mouseInteraction
-            density={2}
-            glowIntensity={0.3}
-            saturation={0}
-            hueShift={140}
-            twinkleIntensity={0.8}
-            rotationSpeed={0.1}
-            repulsionStrength={2}
-            autoCenterRepulsion={0}
-            starSpeed={0.5}
-            speed={1}
-            transparent={false}
-          />
+        {/* The actual rectangle that clips the globe */}
+        <div
+          style={{
+            height: '600px',
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: '24px',
+            border: '1px solid rgba(255, 255, 255, 0.07)',
+          }}
+        >
+          {/* Galaxy background layer */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <Galaxy
+              mouseRepulsion
+              mouseInteraction
+              density={2}
+              glowIntensity={0.3}
+              saturation={0}
+              hueShift={140}
+              twinkleIntensity={0.8}
+              rotationSpeed={0.1}
+              repulsionStrength={2}
+              autoCenterRepulsion={0}
+              starSpeed={0.5}
+              speed={1}
+              transparent={false}
+            />
+          </div>
+
+          {/* InfiniteMenu on top */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+            <InfiniteMenu items={items} scale={1} />
+          </div>
         </div>
 
-        {/* InfiniteMenu on top */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-          <InfiniteMenu items={items} scale={1} />
-        </div>
+        {/* Explore More button — anchored to outer wrapper, NOT inside overflow:hidden */}
+        <a
+          href="/Gallery"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+          className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-2 px-4 py-2
+            bg-black/70 border border-white/25 rounded-xl text-white/70 text-xs font-medium
+            hover:bg-white/10 hover:text-white hover:border-white/50
+            backdrop-blur-sm transition-all duration-300"
+        >
+          Explore More
+          
+        </a>
+
       </motion.div>
     </div>
   );

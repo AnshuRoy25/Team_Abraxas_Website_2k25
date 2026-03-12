@@ -47,7 +47,7 @@ const Navbar = () => {
     }, []);
 
     useEffect(() => {
-        const map = { '/': 'Home', '/Team': 'Team' };
+        const map = { '/': 'Home', '/Team': 'Team', '/Gallery': 'Gallery' };
         if (map[location.pathname]) setActiveSection(map[location.pathname]);
     }, [location.pathname]);
 
@@ -56,7 +56,7 @@ const Navbar = () => {
         { name: 'About',    path: '/#About'    },
         { name: 'Projects', path: '/#Projects' },
         { name: 'Events',   path: '/#Events'   },
-        { name: 'Gallery',  path: '/#Gallery'  },
+        { name: 'Gallery',  path: '/Gallery'   },
         { name: 'Timeline', path: '/#Timeline' },
         { name: 'Team',     path: '/Team'      },
         { name: 'Contact',  path: '/#Contact'  },

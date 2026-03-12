@@ -11,7 +11,6 @@ import About from './components/about/About';
 import Footer from './components/footer/Footer';
 import Events from './components/Events/Events';
 import IntroAnimation from './components/intro/IntroAnimation';
-import GallerySection from './components/Gallery/GallerySection';
 import GlobeGallery from './components/InfiniteMenu/GlobeGallery';
 
 const Team = lazy(() => import('./components/team/Team'));
@@ -67,8 +66,6 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
           display: 'block',
         }}
       />
-
-      {/* vignette left/right */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -76,8 +73,6 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
             'linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 30%, transparent 60%, rgba(0,0,0,0.6) 100%)',
         }}
       />
-
-      {/* bottom fade */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -85,8 +80,6 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
             'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.55) 100%)',
         }}
       />
-
-      {/* text */}
       <div
         className={`absolute inset-0 flex items-center justify-center px-6
           ${textSide === 'left'
@@ -98,7 +91,6 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
           className={`text-center max-w-[85vw] sm:max-w-xs md:max-w-sm lg:max-w-md
             ${textSide === 'left' ? 'sm:text-left' : 'sm:text-right'}`}
         >
-          {/* label */}
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
@@ -110,8 +102,6 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
           >
             {label}
           </p>
-
-          {/* main text */}
           <p
             style={{
               fontFamily: "'Playfair Display', serif",
@@ -128,8 +118,6 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
               <span style={{ color: 'rgba(255,255,255,0.4)' }}>{line3}</span>
             )}
           </p>
-
-          {/* divider */}
           <div
             className={`w-8 h-px bg-white/25 mt-3 mx-auto
               ${textSide === 'left' ? 'sm:mx-0' : 'sm:ml-auto sm:mr-0'}`}
@@ -142,10 +130,8 @@ const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, 
 
 // ── Events Banner Card Component ──
 const EventsBannerCard = () => (
- <div className="flex justify-center px-4 sm:px-8 lg:px-16 mt-4 mb-8 sm:my-16">
+  <div className="flex justify-center px-4 sm:px-8 lg:px-16 mt-4 mb-8 sm:my-16">
     <div className="w-full max-w-5xl flex flex-col sm:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
-
-      {/* image — left */}
       <div
         className="rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 w-full sm:w-[55%] mb-8 sm:mb-0"
         style={{ aspectRatio: '16 / 9', boxShadow: '0 8px 32px rgba(0,0,0,0.6)' }}
@@ -163,8 +149,6 @@ const EventsBannerCard = () => (
           onMouseLeave={e => e.currentTarget.style.filter = 'grayscale(100%) contrast(1.05)'}
         />
       </div>
-
-      {/* text — right */}
       <div className="flex flex-col justify-center text-left flex-1 w-full">
         <p
           style={{
@@ -177,7 +161,6 @@ const EventsBannerCard = () => (
         >
           Team Abraxas
         </p>
-
         <p
           style={{
             fontFamily: "'Playfair Display', serif",
@@ -191,9 +174,7 @@ const EventsBannerCard = () => (
           become<br />
           <span style={{ color: 'rgba(255,255,255,0.35)' }}>experiments.</span>
         </p>
-
         <div className="w-8 h-px bg-white/20 mb-4" />
-
         <p
           style={{
             fontFamily: "'DM Sans', sans-serif",
@@ -208,7 +189,6 @@ const EventsBannerCard = () => (
           the boundaries of what's possible.
         </p>
       </div>
-
     </div>
   </div>
 );
@@ -239,7 +219,6 @@ function App() {
                     />
                     <Hero />
 
-                    {/* ── Cinematic banner before About ── */}
                     <CinematicBanner
                       src="abraxas-2.jpeg"
                       textSide="left"
@@ -253,7 +232,6 @@ function App() {
                       <About />
                     </section>
 
-                    {/* ── Cinematic banner before Projects ── */}
                     <CinematicBanner
                       src="/abraxas-3.jpeg"
                       textSide="right"
@@ -263,42 +241,36 @@ function App() {
                       line3="we question it."
                     />
 
-                    {/* ── Projects — no overflow, no height constraints ── */}
                     <section id="Projects">
                       <Projects />
                     </section>
 
+                    {/* GlobeGallery — has Explore More button inside, routes to /Gallery */}
                     <section id="GlobeGallery">
                       <GlobeGallery />
                     </section>
 
-                    {/* ── Events banner card ── */}
                     <EventsBannerCard />
 
                     <section id="Events" className="mt-32 sm:mt-0">
                       <Events />
                     </section>
 
-                    <section id="Gallery">
-                      <GallerySection />
-                    </section>
-
-        
                     <section id="Timeline" className="mt-16 sm:mt-24">
                       <Timeline />
                     </section>
+
                     <section id="Contact">
                       <Contact />
                     </section>
 
-                  
-                    
                     <section id="Footer">
                       <Footer />
                     </section>
                   </>
                 } />
                 <Route path="/Team" element={<Team />} />
+                {/* /Gallery is now a dedicated full page with GallerySection inside Gallery.jsx */}
                 <Route path="/Gallery" element={<Gallery />} />
               </Routes>
             </Suspense>
