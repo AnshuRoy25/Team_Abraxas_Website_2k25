@@ -110,10 +110,11 @@ const Navbar = () => {
                         </ul>
 
                         {/* Mobile hamburger */}
-                        <button
-                            onClick={() => setIsMenuOpen(prev => !prev)}
-                            className="lg:hidden p-2 text-white/60 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
-                            aria-label="Toggle menu"
+                       <button
+                        onClick={() => setIsMenuOpen(prev => !prev)}
+                        className="lg:hidden p-2 text-white/60 hover:text-white rounded-lg hover:bg-white/10 transition-colors focus:outline-none active:outline-none"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
+                        aria-label="Toggle menu"
                         >
                             {isMenuOpen ? (
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

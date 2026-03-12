@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../../../components/about/Loader";
 
 const Quantum = ({ isMobile }) => {
-    const quantum = useGLTF("./Quantumwalker.gltf");
+    const quantum = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320808/Quantumwalker_gcfcos.glb");
     const meshRef = useRef();
     const [isHovered, setIsHovered] = useState(false);
 

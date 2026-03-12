@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "./Loader";
 
 const RoverModel = ({ isMobile }) => {
-  const rover = useGLTF("/Perseverance.gltf");
+  const rover = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773321182/Perseverance.compressed_u6nqx5.glb");
 
   useEffect(() => {
     rover.scene.traverse((child) => {

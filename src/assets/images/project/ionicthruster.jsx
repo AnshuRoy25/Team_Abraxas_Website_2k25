@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../../../components/about/Loader";
 
 const Thruster = ({ isMobile }) => {
-  const thruster = useGLTF("./ionicthruster.gltf");
+  const thruster = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320803/ionicthruster_zy6jt8.glb");
   const thrusterRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 

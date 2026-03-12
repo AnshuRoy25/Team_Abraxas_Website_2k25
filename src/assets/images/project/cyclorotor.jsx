@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../../../components/about/Loader";
 
 const Cyclorotor = ({ isMobile }) => {
-  const cyclorotor = useGLTF("./cyclorotor.gltf");
+  const cyclorotor = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320474/cyclorotor_kpmwel.glb");
   const cyclorotorRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 

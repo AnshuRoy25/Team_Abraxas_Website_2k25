@@ -137,7 +137,7 @@ const EventsBannerCard = () => (
         style={{ aspectRatio: '16 / 9', boxShadow: '0 8px 32px rgba(0,0,0,0.6)' }}
       >
         <img
-          src="/ab1.jpg"
+          src="https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773317966/IMG20240414203819_gkd64l.jpg"
           alt="Events banner"
           className="w-full h-full object-cover object-center"
           style={{
@@ -193,6 +193,70 @@ const EventsBannerCard = () => (
   </div>
 );
 
+const EventsBannerCard2 = () => (
+  <div className="flex justify-center px-4 sm:px-8 lg:px-16 mt-4 mb-8 sm:my-16">
+    <div className="w-full max-w-5xl flex flex-col sm:flex-row-reverse items-center gap-8 sm:gap-12 lg:gap-16">
+      <div
+        className="rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 w-full sm:w-[55%] mb-8 sm:mb-0"
+        style={{ aspectRatio: '16 / 9', boxShadow: '0 8px 32px rgba(0,0,0,0.6)' }}
+      >
+        <img
+          src="https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773319806/ab1_pzlbdl.png"
+          alt="Team banner"
+          className="w-full h-full object-cover object-center"
+          style={{
+            filter: 'grayscale(100%) contrast(1.05)',
+            display: 'block',
+            transition: 'filter 0.6s ease',
+          }}
+          onMouseEnter={e => e.currentTarget.style.filter = 'grayscale(0%)'}
+          onMouseLeave={e => e.currentTarget.style.filter = 'grayscale(100%) contrast(1.05)'}
+        />
+      </div>
+      <div className="flex flex-col justify-center text-left flex-1 w-full">
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+            letterSpacing: '0.3em',
+            color: 'rgba(255,255,255,0.35)',
+          }}
+          className="uppercase mb-3"
+        >
+          Team Abraxas
+        </p>
+        <p
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.5rem, 3.5vw, 3rem)',
+            lineHeight: 1.2,
+            color: 'rgba(255,255,255,0.95)',
+          }}
+          className="lowercase mb-4"
+        >
+          physics isn't<br />
+          just a subject.<br />
+          <span style={{ color: 'rgba(255,255,255,0.35)' }}>it's a mindset.</span>
+        </p>
+        <div className="w-8 h-px bg-white/20 mb-4" />
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 'clamp(1.1rem, 1.5vw, 0.95rem)',
+            color: 'rgba(255,255,255,0.35)',
+            lineHeight: 1.7,
+          }}
+          className="font-light"
+        >
+          Every equation we solve,<br />
+          every project we build,<br />
+          begins with a single question.
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
 function App() {
   const [showIntro, setShowIntro] = useState(true);
 
@@ -220,7 +284,7 @@ function App() {
                     <Hero />
 
                     <CinematicBanner
-                      src="abraxas-2.jpeg"
+                      src="https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320238/abraxas-2_hpcgds.png"
                       textSide="left"
                       label="Team Abraxas"
                       line1="built by curious"
@@ -233,7 +297,7 @@ function App() {
                     </section>
 
                     <CinematicBanner
-                      src="/abraxas-3.jpeg"
+                      src="https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320237/abraxas-3_y1mean.png"
                       textSide="right"
                       label="Team Abraxas"
                       line1="we don't just"
@@ -250,7 +314,10 @@ function App() {
                       <GlobeGallery />
                     </section>
 
+                
+
                     <EventsBannerCard />
+                    <EventsBannerCard2 />
 
                     <section id="Events" className="mt-32 sm:mt-0">
                       <Events />

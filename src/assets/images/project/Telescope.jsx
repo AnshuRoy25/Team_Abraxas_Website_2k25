@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../../../components/about/Loader";
 
 const Telescope = ({ isMobile }) => {
-    const telescope = useGLTF("./Telescope.gltf");
+    const telescope = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320806/Telescope_c6fw8c.glb");
     const meshRef = useRef();
     const [isHovered, setIsHovered] = useState(false);
 

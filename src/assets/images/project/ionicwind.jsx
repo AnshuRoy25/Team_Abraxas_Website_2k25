@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../../../components/about/Loader";
 
 const IONICWIND = ({ isMobile }) => {
-  const ionicwind = useGLTF("./ionicwind.gltf");
+  const ionicwind = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320802/ionicwind_rhsb8o.glb");
   const meshRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 

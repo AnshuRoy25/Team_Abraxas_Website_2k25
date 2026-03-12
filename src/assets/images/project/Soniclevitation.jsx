@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../../../components/about/Loader";
 
 const Sonic = ({ isMobile }) => {
-    const sonic = useGLTF("./Soniclevitation.gltf");
+    const sonic = useGLTF("https://res.cloudinary.com/dl9ey6o4d/image/upload/v1773320814/Soniclevitation_ylmu0f.glb");
     const meshRef = useRef();
     const [isHovered, setIsHovered] = useState(false);
 
