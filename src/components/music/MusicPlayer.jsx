@@ -16,31 +16,16 @@ const MusicPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
-  const startedRef = useRef(false);
+  
 
   const track = TRACKS[trackIndex];
 
   // ── Single effect: scroll triggers play, runs once ──
   useEffect(() => {
-    const audio = audioRef.current;
-    audio.src = TRACKS[trackIndex].src;
-    audio.volume = 0.4;
-
-    
-
-    const onScroll = () => {
-      if (startedRef.current) return;
-      startedRef.current = true;
-      window.removeEventListener('touchstart', onScroll);
-      window.removeEventListener('click', onScroll);
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
-    };
-
-    window.addEventListener('touchstart', onScroll, { passive: true });
-    window.addEventListener('click', onScroll);
-    return () => window.removeEventListener('touchstart', onScroll);
-      window.removeEventListener('click', onScroll);
-  }, []); // eslint-disable-line
+  const audio = audioRef.current;
+  audio.src = TRACKS[0].src;
+  audio.volume = 0.05;
+}, []);
 
   // ── Audio event listeners ──
   useEffect(() => {
@@ -156,19 +141,7 @@ const MusicPlayer = () => {
               </button>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.3)">
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
-              </svg>
-              <input type="range" min="0" max="1" step="0.01" value={volume}
-                onChange={(e) => {
-                  const v = parseFloat(e.target.value);
-                  setVolume(v);
-                  audioRef.current.volume = v;
-                }}
-                style={{ flex: 1, height: '3px', cursor: 'pointer', accentColor: 'rgba(255,255,255,0.6)' }}
-              />
-            </div>
+            
           </div>
         </div>
 

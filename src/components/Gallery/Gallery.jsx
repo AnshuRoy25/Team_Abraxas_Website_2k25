@@ -347,8 +347,10 @@ const Gallery = () => {
             className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center"
             onClick={closeLightbox}
           >
+            
             <div
               className="relative w-full max-w-5xl px-16"
+              style={{ overflow: 'visible' }}
               onClick={(e) => e.stopPropagation()}
             >
               <AnimatePresence mode="wait">

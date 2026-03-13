@@ -313,10 +313,11 @@ const GallerySection = () => {
                         className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8"
                         onClick={closeLightbox}
                     >
+                     
                         <div
-                            className="relative"
-                            style={{ maxWidth: '560px', width: '100%' }}
-                            onClick={(e) => e.stopPropagation()}
+                        className="relative"
+                        style={{ maxWidth: '560px', width: '100%', overflow: 'visible' }}
+                        onClick={(e) => e.stopPropagation()}
                         >
                             <motion.img
                                 key={lightboxIndex}
