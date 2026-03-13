@@ -4,7 +4,12 @@ const TRACKS = [
   {
     title: "Interstellar Theme",
     artist: "Hans Zimmer",
-    src: "https://res.cloudinary.com/dl9ey6o4d/video/upload/v1773381912/22-no-time-for-caution-docking-scene-1_9qvkpoJC_axf6tm.mp3",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  },
+  {
+    title: "Ambient Space",
+    artist: "Unknown Signal",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   },
 ];
 
@@ -16,6 +21,7 @@ const MusicPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
+  const startedRef = useRef(false);
 
   const track = TRACKS[trackIndex];
 
@@ -25,17 +31,20 @@ const MusicPlayer = () => {
     audio.src = TRACKS[trackIndex].src;
     audio.volume = 0.4;
 
-    let started = false;
+    
 
     const onScroll = () => {
-      if (started) return;
-      started = true;
-      window.removeEventListener('scroll', onScroll);
+      if (startedRef.current) return;
+      startedRef.current = true;
+      window.removeEventListener('touchstart', onScroll);
+      window.removeEventListener('click', onScroll);
       audio.play().then(() => setIsPlaying(true)).catch(() => {});
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('touchstart', onScroll, { passive: true });
+    window.addEventListener('click', onScroll);
+    return () => window.removeEventListener('touchstart', onScroll);
+      window.removeEventListener('click', onScroll);
   }, []); // eslint-disable-line
 
   // ── Audio event listeners ──
