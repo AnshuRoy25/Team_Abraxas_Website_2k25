@@ -4,12 +4,7 @@ const TRACKS = [
   {
     title: "Interstellar Theme",
     artist: "Hans Zimmer",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-  },
-  {
-    title: "Ambient Space",
-    artist: "Unknown Signal",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    src: "https://res.cloudinary.com/dl9ey6o4d/video/upload/v1773381912/22-no-time-for-caution-docking-scene-1_9qvkpoJC_axf6tm.mp3",
   },
 ];
 
