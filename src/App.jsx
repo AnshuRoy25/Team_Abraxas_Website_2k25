@@ -12,6 +12,7 @@ import Footer from './components/footer/Footer';
 import Events from './components/Events/Events';
 import IntroAnimation from './components/intro/IntroAnimation';
 import GlobeGallery from './components/InfiniteMenu/GlobeGallery';
+import MusicPlayer from './components/music/MusicPlayer';
 
 const Team = lazy(() => import('./components/team/Team'));
 const Gallery = lazy(() => import('./components/Gallery/Gallery'));
@@ -30,6 +31,7 @@ const LoadingScreen = () => (
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
+  
   useEffect(() => {
     if (hash) {
       const element = document.querySelector(hash);
@@ -45,6 +47,8 @@ const ScrollToTop = () => {
 
   return null;
 };
+
+
 
 // ── Cinematic Banner Component ──
 const CinematicBanner = ({ src, textSide = 'right', label, line1, line2, line3, gap = 'my-16' }) => (
@@ -268,6 +272,7 @@ function App() {
         <div style={{ width: '100vw' }}>
           <Router>
             <ScrollToTop />
+            <MusicPlayer />
             <section id="Navbar">
               <Navbar />
             </section>
