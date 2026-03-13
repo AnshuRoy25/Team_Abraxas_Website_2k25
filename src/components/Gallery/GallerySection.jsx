@@ -68,6 +68,41 @@ const galleryData = {
     "2026": [],
 };
 
+// Inline SVG arrows — no lucide, no font dependency
+const ArrowLeft = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+    </svg>
+);
+const ArrowRight = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="9 18 15 12 9 6" />
+    </svg>
+);
+const CloseIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+);
+
+const navBtnStyle = {
+    position: 'fixed',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: 9999,
+    width: '44px',
+    height: '44px',
+    borderRadius: '50%',
+    background: 'rgba(255,255,255,0.15)',
+    border: '1px solid rgba(255,255,255,0.3)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    outline: 'none',
+};
+
 const PhotoCard = ({ src, index, total, onClick }) => {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -154,7 +189,6 @@ const GallerySection = () => {
         if (scrollRef.current) scrollRef.current.scrollBy({ left: 600, behavior: 'smooth' });
     };
 
-    // Mouse drag to scroll
     const isDragging = useRef(false);
     const dragStartX = useRef(0);
     const dragScrollLeft = useRef(0);
@@ -179,7 +213,6 @@ const GallerySection = () => {
         <div className="bg-black py-16">
             <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                {/* Header — fixed with whileInView */}
                 <motion.h2
                     style={{ fontFamily: "'Syne', sans-serif" }}
                     className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 text-center tracking-tight"
@@ -210,7 +243,6 @@ const GallerySection = () => {
                     Moments from our journey
                 </motion.p>
 
-                {/* Year Tabs */}
                 <motion.div
                     className="flex justify-center gap-3 mb-10"
                     initial={{ opacity: 0, y: 20 }}
@@ -232,7 +264,6 @@ const GallerySection = () => {
                     ))}
                 </motion.div>
 
-                {/* Scroll strip */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedYear}
@@ -276,7 +307,6 @@ const GallerySection = () => {
                                     ))}
                                 </div>
 
-                                {/* Scroll buttons */}
                                 <div className="flex justify-end gap-3 mt-4">
                                     <button
                                         onClick={handleScrollLeft}
@@ -310,14 +340,38 @@ const GallerySection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8"
                         onClick={closeLightbox}
+                        style={{
+                            position: 'fixed',
+                            inset: 0,
+                            background: 'rgba(0,0,0,0.85)',
+                            backdropFilter: 'blur(8px)',
+                            zIndex: 9000,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
                     >
-                     
+                        {/* PREV */}
+                        <button
+                            onClick={prevImage}
+                            style={{ ...navBtnStyle, left: '20px' }}
+                        >
+                            <ArrowLeft />
+                        </button>
+
+                        {/* NEXT */}
+                        <button
+                            onClick={nextImage}
+                            style={{ ...navBtnStyle, right: '20px' }}
+                        >
+                            <ArrowRight />
+                        </button>
+
+                        {/* Image container */}
                         <div
-                        className="relative"
-                        style={{ maxWidth: '560px', width: '100%', overflow: 'visible' }}
-                        onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => e.stopPropagation()}
+                            style={{ position: 'relative', maxWidth: '560px', width: '100%' }}
                         >
                             <motion.img
                                 key={lightboxIndex}
@@ -327,26 +381,52 @@ const GallerySection = () => {
                                 transition={{ duration: 0.22 }}
                                 src={images[lightboxIndex]}
                                 alt="Selected"
-                                className="w-full rounded-2xl border border-white/10"
-                                style={{ maxHeight: '70vh', objectFit: 'contain' }}
+                                style={{
+                                    width: '100%',
+                                    maxHeight: '70vh',
+                                    objectFit: 'contain',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    display: 'block',
+                                }}
                             />
-                            <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-                                <span style={{ fontFamily: "'DM Sans', sans-serif" }}
-                                    className="text-xs text-white/50 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
+
+                            {/* Counter */}
+                            <div style={{ position: 'absolute', top: '-32px', left: '50%', transform: 'translateX(-50%)' }}>
+                                <span style={{
+                                    fontFamily: "'DM Sans', sans-serif",
+                                    fontSize: '12px',
+                                    color: 'rgba(255,255,255,0.5)',
+                                    background: 'rgba(0,0,0,0.6)',
+                                    padding: '4px 12px',
+                                    borderRadius: '999px',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                }}>
                                     {lightboxIndex + 1} / {images.length}
                                 </span>
                             </div>
-                            <button onClick={closeLightbox}
-                                className="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-200">
-                                <X className="w-4 h-4 text-white" />
-                            </button>
-                            <button onClick={prevImage}
-                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-200">
-                                <ChevronLeft className="w-4 h-4 text-white" />
-                            </button>
-                            <button onClick={nextImage}
-                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-200">
-                                <ChevronRight className="w-4 h-4 text-white" />
+
+                            {/* Close */}
+                            <button
+                                onClick={closeLightbox}
+                                style={{
+                                    position: 'absolute',
+                                    top: '-16px',
+                                    right: '-16px',
+                                    width: '32px',
+                                    height: '32px',
+                                    borderRadius: '50%',
+                                    background: 'rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.2)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    zIndex: 9999,
+                                    outline: 'none',
+                                }}
+                            >
+                                <CloseIcon />
                             </button>
                         </div>
                     </motion.div>

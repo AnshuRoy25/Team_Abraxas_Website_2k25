@@ -24,7 +24,7 @@ const MusicPlayer = () => {
   useEffect(() => {
   const audio = audioRef.current;
   audio.src = TRACKS[0].src;
-  audio.volume = 0.05;
+  audio.volume = 0.005;
 }, []);
 
   // ── Audio event listeners ──
